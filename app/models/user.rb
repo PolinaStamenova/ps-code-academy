@@ -8,6 +8,7 @@ class User < ApplicationRecord
   enum role: { student: 0, admin: 1 }
 
   # Associations
+  has_many :courses, dependent: :destroy
 
   # Validations
   validates :first_name, :last_name,
