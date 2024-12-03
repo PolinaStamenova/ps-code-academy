@@ -10,9 +10,7 @@ RSpec.describe User, type: :model do
 
     describe 'validating alphabetic characters for names' do
       context 'when first_name contains only alphabetic characters' do
-        let(:user) do
-          User.new(first_name: 'Polina', last_name: 'Stamenova', password: 'polina123', email: 'polina@example.com')
-        end
+        let(:user) { build(:user) }
 
         it { expect(user).to be_valid }
       end
@@ -29,7 +27,7 @@ RSpec.describe User, type: :model do
     describe 'email validations' do
       it { should validate_presence_of(:email) }
 
-      let(:user) { User.new(first_name: 'Johnny', last_name: 'Depp', password: 'johnny123', email:) }
+      let(:user) { build(:user, email:) }
 
       context 'when email is valid' do
         let(:email) { 'johnny@example.com' }
@@ -57,9 +55,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'method' do
-    let(:user) do
-      User.create!(first_name: 'Johnny', last_name: 'Depp', password: 'johnny123', email: 'johnny@example.com')
-    end
+    let(:user) { build(:user) }
 
     context '#student?' do
       it 'returns true' do
