@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/polina-courses_test
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/ps-code-academy_test
 
     services:
       postgres:
@@ -20,7 +20,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: polina-courses_test
+          POSTGRES_DB: ps-code-academy_test
         ports:
           - 5432:5432
         options: >-
@@ -54,7 +54,7 @@ jobs:
     - name: Setup Database
       env:
         RAILS_ENV: test
-        DATABASE_URL: postgres://postgres:postgres@localhost:5432/polina-courses
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/ps-code-academy
       run: |
         bin/rails db:create
         bin/rails db:schema:load
