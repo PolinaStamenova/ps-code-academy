@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Associations
-  has_many :courses, foreign_key: :owner_id, dependent: :destroy
 
   # Validations
   validates :name, presence: true
