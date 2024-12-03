@@ -1,8 +1,8 @@
 {
-  "name": "polina-courses",
+  "name": "Run Tests",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/PolinaStamenova/polina-courses.git",
+  "repository": "https://github.com/PolinaStamenova/ps-code-academy.git",
   "author": "Polina Stamenova <polina.stamenova@gmail.com>",
   "license": "MIT"
 }
