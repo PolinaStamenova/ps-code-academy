@@ -1,7 +1,6 @@
-class CourseModule < ApplicationRecord
+class ModuleLesson < ApplicationRecord
   # Associations
-  belongs_to :course
-  has_many :module_lessons
+  belongs_to :course_module
 
   has_one_attached :video
   has_many_attached :documents
