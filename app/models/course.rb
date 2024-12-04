@@ -1,7 +1,10 @@
 class Course < ApplicationRecord
-  belongs_to :owner, class_name: 'User'
+  # Associations
+  belongs_to :user
+  has_many :course_modules, dependent: :destroy
+
+  has_one_attached :video
 
   # Validations
-  validates :name, :description, :price, presence: true
-  validates :price, numericality: { greater_than: 0 }
+  validates :name, presence: true
 end
