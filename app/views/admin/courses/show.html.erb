@@ -1,0 +1,12 @@
+<h1><%= @course.name %></h1>
+  <% if @course.description.present? %>
+    <%= @course.description =%>
+  <% else %>
+    <p>No description available for this course.</p>
+  <% end %>
+
+  <%= link_to 'Edit Course', edit_admin_course_path(@course), class: 'btn btn-primary' %>
+  <%= link_to 'Delete Course', admin_course_path(@course), 
+            data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
+            class: 'btn btn-danger' %>
+  <%= link_to 'Back to Courses', admin_courses_path, class: 'back-btn' %>
