@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  include Authenticate
 
-  protected
+  before_action :authorize_student!, unless: :devise_controller?
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name email password])
+  private
+
+  def authorize_student!
+    redirect_to admin_dashboard_path if current_user&.admin?
   end
 end
