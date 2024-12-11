@@ -6,10 +6,22 @@
   <p>No description available for this Module.</p>
 <% end %>
 
-<%# <%= link_to 'New Module Lesson', new_admin_course_course_module_path(@course), class: 'btn btn-primary' %> 
+<h2>Module Lessons</h2>
+<% if @course_module.module_lessons.any? %>
+  <ul>
+    <% @course_module.module_lessons.each do |module_lesson| %>
+      <li>
+        <%= link_to module_lesson.name, admin_course_course_module_module_lesson_path(@course, @course_module, module_lesson) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No lessons available for this Module.</p>
+<% end %>
 
+<%= link_to 'New Module Lesson', new_admin_course_course_module_module_lesson_path(@course, @course_module), class: 'btn btn-primary' %>
 <%= link_to 'Edit Module', edit_admin_course_course_module_path(@course, @course_module), class: 'btn btn-primary' %>
 <%= link_to 'Delete Module', admin_course_course_module_path(@course, @course_module), 
           data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
           class: 'btn btn-danger' %>
-<%= link_to 'Back to Course', admin_course_course_modules_path, class: 'back-btn' %>
+<%= link_to 'Back to Course Modules', admin_course_course_modules_path, class: 'back-btn' %>
