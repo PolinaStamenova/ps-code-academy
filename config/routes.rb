@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index', as: :dashboard
 
     resources :courses do
-      resources :course_modules
+      resources :course_modules do
+        resources :module_lessons
+      end
     end
   end
 end

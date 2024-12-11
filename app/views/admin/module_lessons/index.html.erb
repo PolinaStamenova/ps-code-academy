@@ -1,0 +1,11 @@
+<h1>Modules Lessons</h1>
+
+<ul>
+  <% @module_lessons.each do |module_lesson| %>
+    <li>
+      <%= link_to module_lesson.name, admin_course_course_module_module_lesson_path(@course, @course_module, module_lesson) %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back to Module Lessons', admin_course_course_modules_path(@course), class: 'back-btn' %>

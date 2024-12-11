@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :module_lesson do
     name { Faker::Educator.course_name }
 
-    course { create(:course_module) }
+    course_module { create(:course_module) }
   end
 
   factory :module_lesson_with_video, parent: :module_lesson do
