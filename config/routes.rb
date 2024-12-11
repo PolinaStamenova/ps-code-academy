@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
     get '/dashboard', to: 'dashboard#index', as: :dashboard
 
-    resources :courses
+    resources :courses do
+      resources :course_modules
+    end
   end
 end

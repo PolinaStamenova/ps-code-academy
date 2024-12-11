@@ -3,7 +3,7 @@ module Admin
     before_action :set_course, only: %i[show edit update destroy]
 
     def index
-      @courses = current_user.courses.includes(course_modules: :lessons)
+      @courses = current_user.courses.includes(course_modules: :module_lessons)
     end
 
     def show; end
