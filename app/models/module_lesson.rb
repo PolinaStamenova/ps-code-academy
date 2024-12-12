@@ -25,7 +25,7 @@ class ModuleLesson < ApplicationRecord
   def name_unique_as_slug
     return unless name.present?
 
-    return unless course_module.module_lessons.exists?(slug: name.parameterize)
+    return unless course_module.module_lessons.exists?(slug: name.parameterize) && new_record?
 
     errors.add(:name, 'already exists in the scope of this course module. Please choose a different name.')
   end

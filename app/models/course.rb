@@ -25,7 +25,7 @@ class Course < ApplicationRecord
   def name_unique_as_slug
     return unless name.present?
 
-    return unless Course.exists?(slug: name.parameterize)
+    return unless Course.exists?(slug: name.parameterize) && new_record?
 
     errors.add(:name, 'has already been taken. Please choose a different name.')
   end
