@@ -1,1 +1,14 @@
-<%= render 'form' %>
+<%= render ModalComponent.new do |modal| %>
+  <% modal.with_header title: "Create Your Course", context: "Start now and make someone's life easier!" %>
+
+  <%= render FormComponent.new(
+    resource: @course,
+    action: admin_courses_path,
+    method: :post
+  ) do |form| %>
+    <% form.with_text_field name: :name, placeholder: 'Name' %>
+    <% form.with_text_area_field name: :description, placeholder: 'Description' %>
+
+    <%= form.with_submit label: "Create Course" %>
+  <% end %>
+<% end %>

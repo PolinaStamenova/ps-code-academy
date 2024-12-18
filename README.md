@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+light purple - f8f5ff
+dark purple - e6d1ff
+
+light green - d9f0a8

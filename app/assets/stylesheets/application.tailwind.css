@@ -2,3 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-purple-100 m-0 p-0;
+  }
+
+  input, textarea, select {
+    @apply text-sm w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
+      transition duration-300 ease-in-out transform 
+      focus:outline-purple-300 
+      hover:shadow-lg hover:border-purple-300 
+      bg-gray-100;
+  }
+
+  input[type='submit'] {
+    @apply bg-black text-white border rounded-3xl p-3;
+  }
+}
+
+

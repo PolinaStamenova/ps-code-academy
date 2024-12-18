@@ -19,9 +19,9 @@
   <p>No course modules available for this course.</p>
 <% end %>
 
-<%= link_to 'New Course Module', new_admin_course_course_module_path(@course), class: 'btn btn-primary' %>
+<%= link_to 'New Course Module', new_admin_course_course_module_path(@course), data: { turbo_frame: 'modal' }, class: 'btn btn-primary' %>
 
-<%= link_to 'Edit Course', edit_admin_course_path(@course), class: 'btn btn-primary' %>
+<%= link_to 'Edit Course', edit_admin_course_path(@course), data: { turbo_frame: 'modal' }, class: 'btn btn-primary' %>
 <%= link_to 'Delete Course', admin_course_path(@course), 
           data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, 
           class: 'btn btn-danger' %>

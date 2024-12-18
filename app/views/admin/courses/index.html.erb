@@ -2,10 +2,8 @@
 
 <ul>
   <% @courses.each do |course| %>
-    <li>
-      <%= link_to course.name, [:admin, course] %>
-    </li>
+    <li><%= link_to course.name, admin_course_path(course) %></li>
   <% end %>
 </ul>
 
-<%= link_to 'Add a New Course', new_admin_course_path, class: 'back-btn' %>
+<%= link_to 'Add a New Course', new_admin_course_path, data: { turbo_frame: 'modal' } %>

@@ -1,4 +1,4 @@
-<h1>Course Modules</h1>
+<h1>Your Course Modules</h1>
 
 <ul>
   <% @course_modules.each do |course_module| %>
@@ -8,5 +8,4 @@
   <% end %>
 </ul>
 
-<%= link_to 'New Course Module', new_admin_course_course_module_path %>
-<%= link_to 'Back to Course', admin_course_path(@course), class: 'back-btn' %>
+<%= link_to 'New Course Module', new_admin_course_course_module_path(@course), data: { turbo_frame: 'modal' }, class: 'back-btn' %>
