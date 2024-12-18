@@ -3,3 +3,4 @@
 //= link_tree ../../../vendor/javascript .js
 //= link_directory ../stylesheets .css
 //= link tailwind.css
+//= link_tree ../../components .js

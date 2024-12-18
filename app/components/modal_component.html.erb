@@ -1,0 +1,12 @@
+
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal">
+    <%= link_to '#', data: { controller: "modals", action: "modals#close" }, class: 'modal-close-btn' do %>
+      <i class="fa-solid fa-xmark"></i>
+    <% end %>
+
+    <%= header %>
+    
+    <%= content %>
+  </div>
+<% end %>

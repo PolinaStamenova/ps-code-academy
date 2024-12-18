@@ -47,7 +47,12 @@ gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem 'image_processing', '~> 1.2'
-# Tailwind CSS
+
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails.
+# [https://viewcomponent.org/]
+gem 'view_component'
+
+# Tailwind CSS\
 gem 'tailwindcss-rails', '~> 3.0'
 
 group :development, :test do
@@ -70,6 +75,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem 'spring'
+
+  # A UI development environment for Ruby on Rails apps
+  gem 'lookbook'
 end
 
 group :test do

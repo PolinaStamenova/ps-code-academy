@@ -18,5 +18,10 @@ module PSCodeAcademy
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Load the view component previews
+    config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
+    config.view_component.default_preview_layout = "application"
+    config.view_component.generate.stimulus_controller = true
   end
 end

@@ -1,0 +1,28 @@
+<%= form_with(model: @resource, url: @action, data: { controller: "form-handler", action: "form-handler#submit" }, local: true) do |form| %>
+  <% if @resource.errors.any? %>
+    <ul style="<%= errors_class %>">
+      <% @resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="form-fileds">
+    <% fields.each do |field| %>
+      <div class="field">
+        <%= form.public_send(field.type, field.name, placeholder: field.placeholder) %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <% if submit? %>
+        <%= submit %>
+      <% else %>
+        <%= form.submit %>
+      <% end %>
+    </div>
+    
+  </div>
+<% end %> 
+
+
