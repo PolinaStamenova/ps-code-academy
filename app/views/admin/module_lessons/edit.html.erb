@@ -1,1 +1,14 @@
-<%= render partial: 'form' %>
+<%= render ModalComponent.new do |modal| %>
+  <% modal.with_header title: "Improve Lesoon for Module - #{@course_module.name}", context: "The path to perfection is through improvement!" %>
+
+  <%= render FormComponent.new(
+    resource: @module_lesson,
+    action: admin_course_course_module_module_lesson_path(@course, @course_module, @module_lesson),
+    method: :path
+  ) do |form| %>
+    <% form.with_text_field name: :name, placeholder: 'Name' %>
+    <% form.with_text_area_field name: :description, placeholder: 'Description' %>
+
+    <%= form.with_submit label: "Update Lesson" %>
+  <% end %>
+<% end %>
