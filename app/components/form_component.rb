@@ -22,7 +22,7 @@ class FormComponent < ApplicationComponent
 
   def errors_class
     # TODO: Use TailwindCSS classes to style the errors
-    'color: red'
+    'color: red; margin-bottom: 1rem'
   end
 
   class SubmitComponent < ApplicationComponent
