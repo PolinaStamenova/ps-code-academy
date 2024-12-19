@@ -6,7 +6,8 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}',
-    './app/assets/components/**/*.{erb,haml,html,slim}',
+    './app/components/**/*.rb',
+    './app/components/**/*.html.erb',
   ],
   theme: {
     extend: {
@@ -15,7 +16,7 @@ module.exports = {
       },
       colors: {
         danger: '#E53E3E', // Example: Tailwind's red-600 hex color
-      }
+      },
     },
   },
   plugins: [
