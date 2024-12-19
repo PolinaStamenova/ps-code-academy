@@ -14,6 +14,10 @@
       </div>
     <% end %>
 
+    <% if video? %>
+      <%= render FileComponent::VideoComponent.new(form: form, description: video.description) %>
+    <% end %>
+
     <div class="actions">
       <% if submit? %>
         <%= submit %>
@@ -21,6 +25,6 @@
         <%= form.submit %>
       <% end %>
     </div>
-    
+
   </div>
 <% end %> 

@@ -14,6 +14,12 @@ class FormComponent < ApplicationComponent
     text_area: { renders: FieldComponent::TextAreaComponent, as: :text_area_field }
   }
 
+  renders_many :files, types: {
+    file: { renders: FileComponent::DocumentComponent, as: :file }
+  }
+
+  renders_one :video, 'FileComponent::VideoComponent'
+
   renders_one :submit, 'SubmitComponent'
 
   def default_form_classes
