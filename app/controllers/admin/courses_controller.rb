@@ -42,7 +42,7 @@ module Admin
     private
 
     def course_params
-      params.require(:course).permit(:name, :description)
+      params.require(:course).permit(:name, :description, :video)
     end
 
     def set_course
