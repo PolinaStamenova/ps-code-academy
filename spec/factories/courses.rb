@@ -7,7 +7,7 @@ FactoryBot.define do
   end
 
   factory :course_with_video, parent: :course do
-    video { fixture_file_upload(Rails.root.join('spec', 'support', 'assets', 'video.mp4'), 'video/mp4') }
+    video { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'assets', 'video.mp4'), 'video/mp4') }
   end
 
   factory :course_with_one_course_module, parent: :course do
