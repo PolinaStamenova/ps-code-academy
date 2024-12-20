@@ -1,0 +1,37 @@
+<div class="w-full max-w-sm mx-auto" data-controller="video-preview">
+  <!-- Remove video preview action -->
+  <div id="removePreview" class="flex flex-row items-center justify-end cursor-pointer hidden" data-action="click->video-preview#remove">
+    <div class="p-2 text-sm flex gap-2 items-center justify-center bg-transparent rounded-3xl cursor-pointer hover:bg-red-600 transition">
+      <i class='fa-solid fa-xmark text-xs'></i>
+      <p class="text-xs">Remove</p>
+    </div>
+  </div>
+
+  <!-- Video upload input -->
+  
+  <%# TODO: Fix  direct_upload %>
+  <%= form.file_field(:video, id: 'video-upload', accept: 'video/*', class: 'hidden', direct_upload: true,
+                        data: { video_preview_target: 'input' }) %> 
+
+  <label
+    id="video-upload-label"
+    data-video-preview-target="label"
+    for="video-upload"
+    class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-400 bg-purple text-black
+          rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-300 transition p-4"
+  >
+    <!-- PNG video upload icon -->
+    <img
+      src="<%= image_path('icon-video-upload-64.png') %>"
+      alt="video-placeholder"
+      class="w-12 h-12 mb-2"
+    />
+
+  <span><%= description %></span>
+  </label>
+
+    <!-- Video preview element -->
+  <div class="flex flex-col items-center justify-center w-full">
+    <video id="videoPreview" class="hidden m-2 rounded-lg w-full h-60" data-video-preview-target="video" controls></video>
+  </div>
+</div>

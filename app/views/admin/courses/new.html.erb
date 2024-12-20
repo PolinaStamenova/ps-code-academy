@@ -9,6 +9,8 @@
     <% form.with_text_field name: :name, placeholder: 'Name' %>
     <% form.with_text_area_field name: :description, placeholder: 'Description' %>
 
+    <% form.with_video description: 'Upload your video' %>
+
     <%= form.with_submit label: "Create Course" %>
   <% end %>
 <% end %>

@@ -70,4 +70,11 @@ Rails.application.configure do
 
   # Set the default URL options for the Devise mailer.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Enable live compilation of assets in development
+  config.assets.debug = true
+  config.assets.compile = true
+
+  # Prevent caching of assets
+  config.assets.digest = true
 end

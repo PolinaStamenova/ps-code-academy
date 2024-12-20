@@ -20,9 +20,9 @@ class ModalComponent < ApplicationComponent
     end
 
     def call
-      content_tag :div, class: 'modal-header' do
+      content_tag :div, class: 'flex flex-col gap-2 items-center text-center w-full mb-4 break-words' do
         safe_join([
-                    content_tag(:h1, title, class: 'modal-header-title'),
+                    content_tag(:h1, title, class: 'text-2xl font-bold'),
                     content_tag(:h5, context)
                   ])
       end
