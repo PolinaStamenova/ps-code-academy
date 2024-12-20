@@ -26,7 +26,7 @@ RSpec.describe Course, type: :model do
                               filename: 'document.pdf', content_type: 'document/pdf')
 
           expect(course).to_not be_valid
-          expect(course.errors.full_messages).to include('Video must be a valid video format (mp4, mov, avi, or webm)')
+          expect(course.errors.full_messages).to include('Video must be a valid video format (mp4, avi, or webm)')
         end
       end
 
