@@ -1,7 +1,7 @@
 class FileComponent < ApplicationComponent
   attr_reader :form, :description
 
-  def initialize(form: nil, description: 'Upload video')
+  def initialize(form: nil, description: '')
     super
 
     @form = form
@@ -10,13 +10,14 @@ class FileComponent < ApplicationComponent
 
   # TODO: Implement better UI for file upload
   class DocumentComponent < FileComponent
-    def call
-      content_tag(:div, class: 'form-component-file') do
-        file_field_tag(:file, class: 'form-component-file-input')
-      end
+    def initialize(form: nil, description: 'Upload Files')
+      super
     end
   end
 
   class VideoComponent < FileComponent
+    def initialize(form: nil, description: 'Upload Video')
+      super
+    end
   end
 end

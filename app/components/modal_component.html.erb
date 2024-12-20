@@ -1,7 +1,8 @@
 
 <%= turbo_frame_tag 'modal' do %>
   <div class="fixed z-[999] p-8 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col
-              max-w-[90%] w-[400px] bg-purple-200 rounded-md shadow-lg max-w-[90%] w-[400px] break-words">
+              max-w-[90%] w-[400px] bg-purple-200 rounded-md shadow-lg break-words
+              overflow-y-auto max-h-[80vh]">
               
     <div class='flex flex-row justify-end'>
       <%= link_to '#', data: { controller: "modals", action: "modals#close" }, class: 'text-xl text-black cursor-pointer mb-4' do %>

@@ -1,0 +1,35 @@
+<div class="w-full max-w-sm mx-auto" data-controller="document-preview">
+  <!-- Document upload input -->
+  <%= form.file_field :file, id: 'document-upload', class: 'hidden', direct_upload: true, multiple: true,
+                            accept: 'application/pdf, 
+                                    application/zip,
+                                    application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                            data: { document_preview_target: 'input' } %>
+
+  <!-- Hidden field to store the signed ID -->
+  <%= hidden_field_tag :file_signed_id, nil, id: "document-signed-id", data: { document_preview_target: 'signedId' } %>
+
+  <!-- Upload label -->
+  <label
+    id="document-upload-label"
+    data-document-preview-target="label"
+    for="document-upload"
+    class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-400 bg-purple text-black
+          rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-300 transition p-4"
+  >
+    <img
+      src="<%= image_path('icon-upload-file.png') %>"
+      alt="document-placeholder"
+      class="w-12 h-12 mb-2"
+    />
+    <span><%= description %></span>
+  </label>
+
+  <!-- Document preview element -->
+  <div class="flex flex-col gap-2 items-center justify-center w-full mt-4 hidden" data-document-preview-target="preview">
+    <p class="text-sm text-gray-700">
+      <span class="font-bold">Uploaded Files:</span>
+      <span data-document-preview-target="document"></span>
+    </p>
+  </div>
+</div>

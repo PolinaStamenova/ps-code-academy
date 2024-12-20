@@ -18,6 +18,10 @@
       <%= render FileComponent::VideoComponent.new(form: form, description: video.description) %>
     <% end %>
 
+    <% if document? %>
+      <%= render FileComponent::DocumentComponent.new(form: form, description: document.description) %>
+    <% end %>
+
     <div class="actions">
       <% if submit? %>
         <%= submit %>
