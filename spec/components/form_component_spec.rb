@@ -10,9 +10,12 @@ RSpec.describe FormComponent, type: :component do
                     method: :post
                   )) do |c|
       c.with_text_field(name: :name, placeholder: 'Name')
+      c.with_video(form: c, description: 'Upload your video')
     end
 
     expect(page).to have_selector('form')
     expect(page).to have_field('Name')
+    expect(page).to have_field('video-upload')
+    expect(page).to have_selector('span', text: 'Upload your video')
   end
 end
