@@ -37,6 +37,6 @@ class Course < ApplicationRecord
 
     return if video.content_type.in?(%w[video/mp4 video/quicktime video/mov video/webm])
 
-    errors.add(:video, 'must be a valid video format (mp4, mov, avi, or webm)')
+    errors.add(:video, 'must be a valid video format (mp4, avi, or webm)')
   end
 end
