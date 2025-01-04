@@ -19,6 +19,33 @@
   <p>No course modules available for this course.</p>
 <% end %>
 
+<% if @course.video.attached?  %>
+  <div class="flex flex w-full">
+    <video id="videoPreview" class="rounded-lg h-60" controls>
+      <source src="<%= url_for(@course.video) %>" type="<%= @course.video.content_type %>">
+    </video>
+  </div>
+  <p class="text-xs italic mt-2"><%= @course.video.blob.filename%></p>
+<% else %>
+  <div class="flex flex-col items-center justify-center relative">
+    <video id="noVideoPreview" class="rounded-lg w-full h-60" controls>
+      <source src="">>
+    </video>
+    <p class="absolute text-white">No video uploaded.</p>
+  </div>
+<% end %>
+
+<% if @course.image.attached? %>
+  <div class="flex flex w-full">
+    <%= image_tag @course.image, class: 'rounded-lg h-60' %>
+  </div>
+<% else %>
+  <div class="flex flex-col items-center justify-center relative">
+    <%= image_tag 'icon-video-upload-64.png', class: 'w-12 h-12 mb-2' %>
+    <p class="absolute text-white">No image uploaded.</p>
+  </div>
+<% end %>
+
 <%= link_to 'New Course Module', new_admin_course_course_module_path(@course), data: { turbo_frame: 'modal' }, class: 'btn btn-primary' %>
 
 <%= link_to 'Edit Course', edit_admin_course_path(@course), data: { turbo_frame: 'modal' }, class: 'btn btn-primary' %>

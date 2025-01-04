@@ -1,0 +1,34 @@
+<div class="w-full max-w-sm mx-auto" data-controller="image-preview">
+  <!-- Remove image preview action -->
+  <div id="removePreview" class="flex flex-row items-center justify-end cursor-pointer hidden" data-action="click->image-preview#remove">
+    <div class="p-2 text-sm flex gap-2 items-center justify-center bg-transparent rounded-3xl cursor-pointer hover:bg-red-600 transition">
+      <i class='fa-solid fa-xmark text-xs'></i>
+      <p class="text-xs">Remove</p>
+    </div>
+  </div>
+
+  <!-- Image upload input -->
+  <%= form.file_field(:image, id: 'image-upload', accept: 'image/png, image/jpeg, image/webp', class: 'hidden', 
+                        data: { image_preview_target: 'input' }) %>
+
+  <label
+    id="image-upload-label"
+    data-image-preview-target="label"
+    for="image-upload"
+    class="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-400 bg-purple text-black
+          rounded-lg cursor-pointer hover:border-purple-500 hover:bg-purple-300 transition p-4"
+  >
+    <!-- PNG image upload icon -->
+    <img
+      src="<%= image_path('icon-video-upload-64.png') %>"
+      alt="image-placeholder"
+      class="w-12 h-12 mb-2"
+    />
+    <span><%= description %></span>
+  </label>
+
+  <!-- Image preview element -->
+  <div class="flex flex-col items-center justify-center w-full">
+    <img id="imagePreview" class="hidden m-2 rounded-lg w-full h-max-60" data-image-preview-target="image" />
+  </div>
+</div>
