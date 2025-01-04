@@ -1,14 +1,20 @@
 class Course < ApplicationRecord
+  # Constants
+  VIDEO_FORMATS = %w[video/mp4 video/quicktime video/webm].freeze
+  COVER_IMAGE_FORMATS = %w[image/png image/jpg image/jpeg].freeze
+
   # Associations
   belongs_to :user
   has_many :course_modules, dependent: :destroy
 
   has_one_attached :video
+  has_one_attached :image
 
   # Validations
   validates :name, presence: true
   validate :name_unique_as_slug
   validate :validate_video_format
+  validate :validate_image_format
 
   # Callbacks
   before_validation :set_slug
@@ -31,12 +37,19 @@ class Course < ApplicationRecord
     errors.add(:name, 'has already been taken. Please choose a different name.')
   end
 
-  # TODO: Write spec
   def validate_video_format
     return unless video.attached?
 
-    return if video.content_type.in?(%w[video/mp4 video/quicktime video/mov video/webm])
+    return if video.content_type.in?(VIDEO_FORMATS)
 
     errors.add(:video, 'must be a valid video format (mp4, avi, or webm)')
+  end
+
+  def validate_image_format
+    return unless image.attached?
+
+    return if image.content_type.in?(COVER_IMAGE_FORMATS)
+
+    errors.add(:image, 'must be a valid video format (png, jpg, or jpeg)')
   end
 end

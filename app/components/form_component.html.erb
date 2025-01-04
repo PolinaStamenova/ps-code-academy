@@ -22,6 +22,10 @@
       <%= render FileComponent::DocumentComponent.new(form: form, description: document.description) %>
     <% end %>
 
+    <% if image? %>
+      <%= render FileComponent::ImageComponent.new(form: form, description: image.description) %>
+    <% end %>
+
     <div class="actions">
       <% if submit? %>
         <%= submit %>

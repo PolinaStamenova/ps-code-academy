@@ -1,8 +1,29 @@
 <h1>Your Courses</h1>
 
-<ul>
+<ul class="grid grid-flow-col "> <%#rid-rows-4  gap-4%>
   <% @courses.each do |course| %>
-    <li><%= link_to course.name, admin_course_path(course) %></li>
+    <li class="w-72 rounded-lg p-6 bg-purple-200 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
+      <%= link_to admin_course_path(course), class: "flex flex-col gap-4" do %>
+        <h2 class="text-center"><%= course.name %></h2>
+
+        <% if course.image.attached? %>
+          <div class="flex flex w-full">
+            <%= image_tag course.image, class: 'w-full h-60 object-fill mb-2 rounded-lg' %>
+          </div>
+        <% else %>
+          <div class="flex flex-col items-center justify-center relative bg-purple text-black rounded-lg">
+            <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg", class: 'w-full h-60 object-fill mb-2 rounded-lg' %>
+          </div>
+        <% end %>
+
+        <% if course.description.present? %>
+          <p class="text-center"><%= course.description%></p>
+        <% else %>
+          <p class="text-center">No description available for this course.</p>
+        <% end %>
+        
+      <% end %>
+    </li>
   <% end %>
 </ul>
 

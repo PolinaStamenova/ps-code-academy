@@ -16,6 +16,7 @@ class FormComponent < ApplicationComponent
 
   renders_one :video, 'FileComponent::VideoComponent'
   renders_one :document, 'FileComponent::DocumentComponent'
+  renders_one :image, 'FileComponent::ImageComponent'
   renders_one :submit, 'SubmitComponent'
 
   def default_form_classes

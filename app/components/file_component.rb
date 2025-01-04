@@ -20,4 +20,10 @@ class FileComponent < ApplicationComponent
       super
     end
   end
+
+  class ImageComponent < FileComponent
+    def initialize(form: nil, description: 'Upload Cover Image')
+      super
+    end
+  end
 end
