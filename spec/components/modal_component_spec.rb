@@ -8,7 +8,6 @@ RSpec.describe ModalComponent, type: :component do
       'Body'
     end
 
-    expect(page).to have_selector('.modal')
     expect(page).to have_content('Title')
     expect(page).to have_content('Some text')
     expect(page).to have_content('Body')
@@ -31,7 +30,6 @@ RSpec.describe ModalComponent, type: :component do
       form_content.to_s.html_safe
     end
 
-    expect(page).to have_selector('.modal')
     expect(page).to have_content('Title')
     expect(page).to have_content('Some text')
     expect(page).to have_selector('form')

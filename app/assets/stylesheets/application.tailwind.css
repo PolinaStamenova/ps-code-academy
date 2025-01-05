@@ -21,7 +21,7 @@
   }
   
   input[type='submit'] {
-    @apply bg-black text-white border rounded-3xl p-3 w-full hover:shadow-xl;
+    @apply bg-black text-white border rounded-3xl p-2 w-full hover:shadow-xl;
   }
 }
 
