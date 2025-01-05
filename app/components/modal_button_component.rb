@@ -1,0 +1,2 @@
+class ModalButtonComponent < ButtonComponent
+end
