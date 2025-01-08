@@ -12,7 +12,7 @@ class ButtonComponentPreview < ViewComponent::Preview
 
   # @!group With Icons
 
-  # Action button with icon
+  # Button icon_names options are: add, edit, delete, back
   def add
     button_component(label: 'Add button', path: '#', icon_name: 'add')
   end
@@ -23,6 +23,10 @@ class ButtonComponentPreview < ViewComponent::Preview
 
   def delete
     button_component(label: 'Delete button', path: '#', icon_name: 'delete')
+  end
+
+  def back
+    button_component(label: 'Back button', path: '#', icon_name: 'back')
   end
 
   # @!endgroup

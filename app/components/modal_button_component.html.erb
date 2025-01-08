@@ -1,4 +1,6 @@
-<div class="<%= full_classes %>">
-  <%= link_to label, path, data: { turbo_frame: 'modal' } %>
-  <i class="<%= icon_classes %>"></i>
-</div>
+<%= link_to path, class: full_classes, data: { turbo_frame: 'modal' } do %>
+  <div>
+    <%= label %>
+    <i class="<%= icon_classes %>"></i>
+  </div>
+<% end %>
