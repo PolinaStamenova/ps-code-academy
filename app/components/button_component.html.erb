@@ -1,4 +1,6 @@
-<div class="<%= full_classes %>">
-  <%= link_to label, path %>
-  <i class="<%= icon_classes %>"></i>
-</div>
+<%= link_to path, class: full_classes do %>
+  <div>
+    <%= label %>
+    <i class="<%= icon_classes %>"></i>
+  </div>
+<% end %>

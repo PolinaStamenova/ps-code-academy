@@ -19,6 +19,9 @@
 
     <div id="screenBlade", class="hidden"></div>
 
-    <%= yield %>
+    <div class='flex'>
+      <%= render 'admin/navigation' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

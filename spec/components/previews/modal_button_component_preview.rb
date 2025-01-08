@@ -7,14 +7,14 @@ class ModalButtonComponentPreview < ViewComponent::Preview
   # @param label text "The text to display in the button"
   # @param path text "The path to navigate to when the button is clicked"
   # @param type text "The type of button to display: action, primary, danger"
-  # @param size text "The size of the button: small, medium, large, large-xl"
+  # @param size text "The size of the button: xs-small, x-small, small, medium, large, large-xl"
   def default(label: 'Modal Button', path: new_admin_course_path, type: 'action', size: 'medium')
     modal_button_component(label:, path:, type:, size:)
   end
 
   # @!group With Icons
 
-  # Action button with icon
+  # Button icon_names options are: add, edit, delete, back
   def add
     modal_button_component(label: 'Add button', path: '#', icon_name: 'add')
   end
@@ -25,6 +25,10 @@ class ModalButtonComponentPreview < ViewComponent::Preview
 
   def delete
     modal_button_component(label: 'Delete button', path: '#', icon_name: 'delete')
+  end
+
+  def back
+    modal_button_component(label: 'Delete button', path: '#', icon_name: 'back')
   end
 
   # @!endgroup
@@ -48,7 +52,15 @@ class ModalButtonComponentPreview < ViewComponent::Preview
 
   # @!group Sizes
 
-  # Button sizes options are: small, medium, large, large-xl
+  # Button sizes options are: xs-small, x-small, small, medium, large, large-xl
+  def xs_small
+    modal_button_component(label: 'Action Button', path: '#', size: 'xs-small')
+  end
+
+  def x_small
+    modal_button_component(label: 'Action Button', path: '#', size: 'x-small')
+  end
+
   def small
     modal_button_component(label: 'Action Button', path: '#', size: 'small')
   end
