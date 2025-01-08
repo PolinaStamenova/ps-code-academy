@@ -1,5 +1,5 @@
 <%= render ModalComponent.new do |modal| %>
-  <% modal.with_header title: "Improve Lesoon for Module - #{@course_module.name}", context: "The path to perfection is through improvement!" %>
+  <% modal.with_header title: "Improve This Lesoon", context: "The path to perfection is through improvement!" %>
 
   <%= render FormComponent.new(
     resource: @module_lesson,
@@ -8,6 +8,8 @@
   ) do |form| %>
     <% form.with_text_field name: :name, placeholder: 'Name' %>
     <% form.with_text_area_field name: :description, placeholder: 'Description' %>
+
+    <% form.with_video description: 'Upload your video' %>
 
     <%= form.with_submit label: "Update Lesson" %>
   <% end %>

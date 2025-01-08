@@ -18,7 +18,8 @@ class Admin::ModuleLessonsController < Admin::ApplicationController
     @module_lesson = @course_module.module_lessons.build(module_lesson_params)
 
     if @module_lesson.save
-      redirect_to [:admin, @course, @course_module, @module_lesson], notice: 'Module lesson was successfully created.'
+      redirect_back(fallback_location: [:admin, @course],
+                    notice: 'Module lesson was successfully created.')
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +27,8 @@ class Admin::ModuleLessonsController < Admin::ApplicationController
 
   def update
     if @module_lesson.update(module_lesson_params)
-      redirect_to [:admin, @course, @course_module, @module_lesson], notice: 'Module lesson was successfully updated.'
+      redirect_back(fallback_location: [:admin, @course],
+                    notice: 'Module lesson was successfully updated.')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,6 +56,6 @@ class Admin::ModuleLessonsController < Admin::ApplicationController
   end
 
   def module_lesson_params
-    params.require(:module_lesson).permit(:name, :description)
+    params.require(:module_lesson).permit(:name, :description, :video)
   end
 end

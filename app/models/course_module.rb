@@ -17,6 +17,21 @@ class CourseModule < ApplicationRecord
     slug
   end
 
+  def duration
+    total_seconds = module_lessons.sum do |lesson|
+      next 0 unless lesson.video.attached?
+
+      blob = lesson.video.blob
+
+      ActiveStorage::Analyzer::VideoAnalyzer.new(blob).metadata[:duration].to_i
+    end
+
+    hours = total_seconds / 3600
+    minutes = (total_seconds % 3600) / 60
+
+    "#{hours}hr #{minutes}min"
+  end
+
   private
 
   def set_slug

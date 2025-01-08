@@ -1,0 +1,32 @@
+<!-- Sidebar -->
+<aside class="h-screen w-64 bg-black text-white flex flex-col">
+  <!-- Logo -->
+  <div class="h-16 flex items-center px-4 border-b border-gray-700 rounded-b-lg">
+    <%= link_to root_path, class: "text-xl " do %>
+      PS Code Academy
+    <% end %>
+  </div>
+
+  <!-- Menu Items -->
+  <nav class="flex-1 px-4 py-6">
+    <ul class="space-y-2 font-medium">
+      <li>
+        <%= link_to "Dashboard", dashboard_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm" %>
+      </li>
+      <li>
+        <%= link_to "Courses", admin_courses_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm mb-2" %>
+      </li>
+      <li>
+        <%= link_to "Students", dashboard_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm" %>
+      </li>
+      <li>
+        <%= link_to "Reports", "#", class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm mb-2" %>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Footer -->
+  <div class="border-t border-gray-700 p-4 rounded-t-lg">
+    <%= link_to "Logout", '#', method: :delete, class: "hover:bg-black hover:text-white hover:border px-3 py-2 rounded-xl text-sm font-medium" %>
+  </div>
+</aside>

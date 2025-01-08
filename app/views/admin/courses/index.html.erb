@@ -1,30 +1,31 @@
-<h1>Your Courses</h1>
+<div class='container mx-auto p-4 w-3/5'>
+  <div class='text-balance'>
+    <div class="flex justify-between items-start">
+      <h1 class='text-xl font-bold'>Your Courses</h1>
+      <%= modal_button_component(label: 'Create Course', icon_name: 'add', path: new_admin_course_path, size: 'small') %>
+    </div>
 
-<ul class="grid grid-flow-col "> <%#rid-rows-4  gap-4%>
-  <% @courses.each do |course| %>
-    <li class="w-72 rounded-lg p-6 bg-purple-200 shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300">
-      <%= link_to admin_course_path(course), class: "flex flex-col gap-4" do %>
-        <h2 class="text-center"><%= course.name %></h2>
+    <%# --- Courses --- %>
+    <ul class="grid grid-cols-3 gap-4 mt-4">
+      <% @courses.each do |course| %>
+        <%= link_to admin_course_path(course) do %>
+          <li class="p-3 w-60 h-80 rounded-lg bg-white shadow-xl shadow-black border border-black
+                      hover:bg-purple-200 hover:scale-105 transition-transform duration-300">
 
-        <% if course.image.attached? %>
-          <div class="flex flex w-full">
-            <%= image_tag course.image, class: 'w-full h-60 object-fill mb-2 rounded-lg' %>
-          </div>
-        <% else %>
-          <div class="flex flex-col items-center justify-center relative bg-purple text-black rounded-lg">
-            <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg", class: 'w-full h-60 object-fill mb-2 rounded-lg' %>
-          </div>
+              <% if course.image.attached? %>
+                <%= image_tag course.image, class: 'object-cover w-full h-40 mb-2 rounded-lg' %>
+              <% else %>
+                <div class="flex flex-col items-center justify-center relative bg-purple text-black rounded-lg">
+                  <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg", class: 'object-cover w-full h-60 mb-2 rounded-lg' %>
+                </div>
+              <% end %>
+              
+              <div class="p-2">
+                <h2 class="text-sm font-bold line-clamp-3"><%= course.name %></h2>
+              </div>
+          </li>
         <% end %>
-
-        <% if course.description.present? %>
-          <p class="text-center"><%= course.description%></p>
-        <% else %>
-          <p class="text-center">No description available for this course.</p>
-        <% end %>
-        
       <% end %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'Add a New Course', new_admin_course_path, data: { turbo_frame: 'modal' } %>
+    </ul>
+  </div>
+</div>

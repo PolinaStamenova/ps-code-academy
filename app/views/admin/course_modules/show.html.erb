@@ -19,7 +19,8 @@
   <p>No lessons available for this Module.</p>
 <% end %>
 
-<%= link_to 'New Module Lesson', new_admin_course_course_module_module_lesson_path(@course, @course_module) %>
+<%= modal_button_component(label: 'New Lesson', path: new_admin_course_course_module_module_lesson_path(@course, @course_module)) %>
+
 <%= link_to 'Edit Module', edit_admin_course_course_module_path(@course, @course_module), data: { turbo_frame: "modal" } %>
 <%= link_to 'Delete Module', admin_course_course_module_path(@course, @course_module), 
           data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>

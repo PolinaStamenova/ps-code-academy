@@ -18,7 +18,8 @@ class Admin::CourseModulesController < Admin::ApplicationController
     @course_module = @course.course_modules.build(course_module_params)
 
     if @course_module.save
-      redirect_to [:admin, @course, @course_module], notice: 'Course module was successfully created.'
+      redirect_back(fallback_location: [:admin, @course],
+                    notice: 'Course module was successfully created.')
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +27,8 @@ class Admin::CourseModulesController < Admin::ApplicationController
 
   def update
     if @course_module.update(course_module_params)
-      redirect_to [:admin, @course, @course_module], notice: 'Course module was successfully updated.'
+      redirect_back(fallback_location: [:admin, @course],
+                    notice: 'Course module was successfully updated.')
     else
       render :edit, status: :unprocessable_entity
     end

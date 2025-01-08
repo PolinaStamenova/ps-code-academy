@@ -1,0 +1,50 @@
+  <%# --- Course Modules --- %>
+  <% if @course.course_modules.any? %>
+    <h2 class='text-xl font-medium text-black'>Course content</h2>
+  
+    <ul class='rounded-lg flex flex-col gap-2'>
+      <% @course.course_modules.each do |course_module| %>
+        <li class='bg-purple-200 rounded-lg hover:bg-purple-300' data-controller="chevron-down">
+          <div class='flex flex justify-between items-center py-2 px-4'>
+            <div class='flex gap-2 items-center '>
+              <i class='fa-solid fa-chevron-down cursor-pointer' data-action="click->chevron-down#chevron" data-chevron-down-target="chevron"></i>
+              <%= link_to course_module.name, admin_course_course_module_path(@course, course_module), class: 'font-medium' %>
+            </div>
+            <div class='flex gap-3 items-center'>
+              <%= course_module.module_lessons.count %> lessons &#8226; <%= course_module.duration %>
+              <%= modal_button_component(label: 'Add Lesson', path: new_admin_course_course_module_module_lesson_path(@course, course_module), icon_name: 'add', size: 'small') %>
+              <%= modal_button_component(path: edit_admin_course_course_module_module_lesson_path(@course, course_module), icon_name: 'edit', size: 'xs-small') %>
+              <%= modal_button_component(path: admin_course_course_module_path(@course, course_module), icon_name: 'delete', size: 'xs-small') %>
+            </div>
+          </div>
+
+          <%# --- List of Module Lessons --- %>
+          <ul class='hidden bg-gray-100 p-4 rounded-b-lg' data-chevron-down-target="list">
+            <% course_module.module_lessons.each do |lesson| %>
+              <li class='flex justify-between items-center'>
+                <div class="flex gap-2 flex items-center">
+                  <% if lesson.video.attached? %>
+                  <i class='w-4 fa-brands fa-youtube'></i>
+                  <% elsif lesson.documents.attached? %>
+                    <i class='w-4 fa-solid fa-file'></i>
+                    <% else %>
+                    <i class='w-4'></i>
+                  <% end %>
+
+                  <%= lesson.name %>
+
+                </div>
+
+                <div class='flex gap-3 items-center'>
+                  <%= modal_button_component(path: edit_admin_course_course_module_module_lesson_path(@course, course_module, lesson), icon_name: 'edit', size: 'xs-small') %>
+                  <%= modal_button_component(path: edit_admin_course_course_module_module_lesson_path(@course, course_module, lesson), icon_name: 'delete', size: 'xs-small') %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No course modules available for this course.</p>
+  <% end %>
