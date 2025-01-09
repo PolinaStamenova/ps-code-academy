@@ -1,49 +1,55 @@
-<div class='container mx-auto p-4 w-3/5 flex flex-col gap-3'>
-  <div class='text-balance flex flex-col gap-3'> <%# border border-black p-6 rounded-lg shadow-lg %>
 
-    <%# --- Course Name & Action Buttons --- %>
-    <div class='flex justify-between items-start'>
-      <h1 class='text-xl font-bold'><%= @course.name %></h1>
 
-      <div class='flex gap-3'>
-        <%= modal_button_component(path: edit_admin_course_path(@course), icon_name: 'edit', size: 'x-small') %>
-        <%= modal_button_component(path: edit_admin_course_path(@course), icon_name: 'delete', size: 'x-small') %>
+  <div class='container mx-auto p-4 w-3/5 flex flex-col gap-3'>
+    <%# --- Back Buttons --- %>
+    <%= button_component(label: 'Back', path: admin_courses_path, type: "primary", icon_name: 'back', size: 'x-small') %>
+
+    <div class='text-balance flex flex-col gap-3'>
+      <%# --- Course Name & Action Buttons --- %>
+      <div class='flex justify-between items-start'>
+        <h1 class='text-xl font-bold'><%= @course.name %></h1>
+
+        <div class='flex gap-3'>
+          <%= modal_button_component(path: edit_admin_course_path(@course), icon_name: 'edit', size: 'x-small') %>
+          <%= modal_button_component(path: edit_admin_course_path(@course), icon_name: 'delete', size: 'x-small') %>
+
+          <%= form_with model: [:admin, @course], method: :delete, data: { turbo_confirm: 'Are you sure?' } do |form| %>
+            <%= form.submit 'Delete' %>
+          <% end %>
+
+        </div>
       </div>
+
+      <%# TODO: Extract into partial when needed %>
+      <%# --- Video --- %>
+      <% if @course.video.attached?  %>
+        <div class="flex flex w-96">
+          <video id="videoPreview" class="rounded-lg" controls
+                  poster="<%= @course.image.attached? ? url_for(@course.image) : 'default-cover-image-url.jpg' %>">
+            <source src="<%= url_for(@course.video) %>" type="<%= @course.video.content_type %>">
+          </video>
+        </div>
+        <p class='text-xs italic mt-2'><%= @course.video.blob.filename%></p>
+      <% else %>
+        <div class="flex flex-col items-center justify-center relative w-96">
+          <video id="noVideoPreview" class='rounded-lg h-60' controls>
+            <source src="">>
+          </video>
+          <p class="absolute text-white">No video uploaded.</p>
+        </div>
+      <% end %>
+
+      <%# --- Course Description --- %>
+      <div class='text-sm text-gray-600'>
+        <% if @course.description.present? %>
+          <%= @course.description %>
+        <% else %>
+          <p>No description available for this course.</p>
+        <% end %>
+        </div>
     </div>
 
-    <%# TODO: Extract into partial when needed %>
-    <%# --- Video --- %>
-    <% if @course.video.attached?  %>
-      <div class="flex flex w-96">
-        <video id="videoPreview" class="rounded-lg" controls
-                poster="<%= @course.image.attached? ? url_for(@course.image) : 'default-cover-image-url.jpg' %>">
-          <source src="<%= url_for(@course.video) %>" type="<%= @course.video.content_type %>">
-        </video>
-      </div>
-      <p class='text-xs italic mt-2'><%= @course.video.blob.filename%></p>
-    <% else %>
-      <div class="flex flex-col items-center justify-center relative w-96">
-        <video id="noVideoPreview" class='rounded-lg h-60' controls>
-          <source src="">>
-        </video>
-        <p class="absolute text-white">No video uploaded.</p>
-      </div>
-    <% end %>
-
-    <%# --- Course Description --- %>
-    <div class='text-sm text-gray-600'>
-      <% if @course.description.present? %>
-        <%= @course.description %>
-      <% else %>
-        <p>No description available for this course.</p>
-      <% end %>
-      </div>
+    <%# --- Course Modules --- %>
+    <%= render partial: 'course_module' %>
   </div>
-
-  <%# --- Course Modules --- %>
-  <%= render partial: 'course_module' %>
-
-  <%# --- Action & Back Buttons --- %>
-  <%= modal_button_component(label: 'New Course Module', path: new_admin_course_course_module_path(@course)) %>
-  <%= button_component(label: 'Back to Courses', path: admin_courses_path, type: "primary", icon_name: 'back') %>
 </div>

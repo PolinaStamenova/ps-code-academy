@@ -37,7 +37,8 @@ class Admin::CourseModulesController < Admin::ApplicationController
   def destroy
     @course_module.destroy
 
-    redirect_to admin_course_course_modules_path(@course), notice: 'Course module was successfully destroyed.'
+    redirect_back(fallback_location: [:admin, @course],
+                  notice: 'Course module was successfully destroyed.')
   end
 
   private

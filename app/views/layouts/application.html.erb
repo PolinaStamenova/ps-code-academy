@@ -16,6 +16,10 @@
 
   <body>
     <%= turbo_frame_tag "modal" %>
-    <%= yield %>
+
+    <div class='flex'>
+      <%= render 'navigation' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

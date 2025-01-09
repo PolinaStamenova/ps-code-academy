@@ -1,7 +1,7 @@
 class CourseModule < ApplicationRecord
   # Associations
   belongs_to :course
-  has_many :module_lessons
+  has_many :module_lessons, dependent: :destroy
 
   has_one_attached :video
   has_many_attached :documents
@@ -38,6 +38,7 @@ class CourseModule < ApplicationRecord
     self.slug = name.parameterize if name.present?
   end
 
+  # TODO: Fix: when updating a record and there is another one with the same name pg error is thrown
   def name_unique_as_slug
     return unless name.present?
 
