@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "trix";
+@import "actiontext";
+@import 'actiontext.css';
+
 @layer base {
   body {
     @apply bg-purple-100 m-0 p-0;
@@ -19,10 +23,15 @@
   textarea {
     @apply h-24;
   }
+
+  trix-editor {
+    @apply min-h-60;
+  }
   
   input[type='submit'] {
     @apply bg-black text-white border rounded-3xl p-2 w-full hover:shadow-xl;
   }
 }
+
 
 

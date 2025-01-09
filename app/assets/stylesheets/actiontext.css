@@ -1,0 +1,106 @@
+/*
+ * Provides a drop-in pointer for the default Trix stylesheet that will format the toolbar and
+ * the trix-editor content (whether displayed or under editing). Feel free to incorporate this
+ * inclusion directly in any other asset bundle and remove this file.
+ *
+ *= require trix
+*/
+
+/*
+ * We need to override trix.css’s image gallery styles to accommodate the
+ * <action-text-attachment> element we wrap around attachments. Otherwise,
+ * images in galleries will be squished by the max-width: 33%; rule.
+*/
+.trix-content .attachment-gallery > action-text-attachment,
+.trix-content .attachment-gallery > .attachment {
+  flex: 1 0 33%;
+  padding: 0 0.5em;
+  max-width: 33%;
+}
+
+.trix-content .attachment-gallery.attachment-gallery--2 > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--2 > .attachment, .trix-content .attachment-gallery.attachment-gallery--4 > action-text-attachment,
+.trix-content .attachment-gallery.attachment-gallery--4 > .attachment {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+/* ======== TRIX CONTENT STYLE ======== */
+.trix-content action-text-attachment .attachment {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Content - image */
+.trix-content action-text-attachment img {
+  width: 600px;
+  height: auto;
+}
+
+.trix-content pre  {
+  border-radius: 0.5rem;
+  background-color:rgb(222, 219, 219);
+}
+
+.trix-content a  {
+  color:rgb(135, 91, 255);
+  font-weight: 500;
+}
+
+.trix-content a:hover  {
+  color: rgb(102, 48, 249);
+  text-decoration: underline;
+}
+
+.trix-content .small-text {
+  font-size: 0.875rem; /* Small font size */
+}
+
+.trix-content .large-text {
+  font-size: 1.5rem; /* Large font size */
+}
+
+/* ======== TRIX EDITOR STYLE ======== */
+trix-editor ul {
+  list-style-type: disc;
+  margin-left: 100px;
+}
+
+trix-editor ol {
+  list-style-type: decimal;
+  margin-left: 100px;
+}
+
+trix-editor li {
+  margin-bottom: 5px;
+}
+
+/* Align the trix-editor style with all other inputs */
+trix-editor {
+  font-size: 0.875rem; /* text-sm */
+  width: 100%; /* w-full */
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  border: 1px solid #d1d5db; /* border border-gray-300 */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+  background-color: #f3f4f6; /* bg-gray-100 */
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out; /* transition duration-300 ease-in-out transform */
+}
+
+trix-editor:focus {
+  outline: 2px solid #a78bfa; /* focus:outline-purple-300 */
+}
+
+trix-editor:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* hover:shadow-lg */
+  border-color: #a78bfa; /* hover:border-purple-300 */
+}
+
+/* ======== TOOLBAR ======== */
+trix-toolbar .trix-button-group {
+  border-radius: 0.75rem; /* rounded-xl */
+}
+
+trix-toolbar .trix-button {
+  border: none;
+}
