@@ -45,6 +45,9 @@ jobs:
     - name: Install PostgreSQL client
       run: sudo apt-get install libpq-dev
 
+    - name: Install libvips (required for ruby-vips)
+      run: sudo apt-get install -y libvips
+
     - name: Install Dependencies
       run: |
         gem install bundler
