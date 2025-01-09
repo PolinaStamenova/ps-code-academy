@@ -27,4 +27,14 @@ class FieldComponent < ApplicationComponent
       @type = :text_area
     end
   end
+
+  class RichTextAreaComponent < FieldComponent
+    attr_reader :type
+
+    def initialize(name:, placeholder:)
+      super
+
+      @type = :rich_text_area
+    end
+  end
 end

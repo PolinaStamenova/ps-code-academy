@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Authenticate
+  helper ActionText::Engine.helpers
 
   before_action :authorize_student!, unless: :devise_controller?
 

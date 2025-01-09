@@ -11,7 +11,8 @@ class FormComponent < ApplicationComponent
 
   renders_many :fields, types: {
     text: { renders: FieldComponent::TextComponent, as: :text_field },
-    text_area: { renders: FieldComponent::TextAreaComponent, as: :text_area_field }
+    text_area: { renders: FieldComponent::TextAreaComponent, as: :text_area_field },
+    rich_text_area: { renders: FieldComponent::RichTextAreaComponent, as: :rich_text_area_field }
   }
 
   renders_one :video, 'FileComponent::VideoComponent'
