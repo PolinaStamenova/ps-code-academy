@@ -69,3 +69,7 @@ yarn-debug.log*
 
 # Mac OS stuff we don't want in the repository
 .DS_Store
+
+/config/credentials/development.key
+
+/config/credentials/test.key
