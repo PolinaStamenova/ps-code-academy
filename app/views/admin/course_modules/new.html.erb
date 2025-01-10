@@ -1,5 +1,5 @@
 <%= render ModalComponent.new do |modal| %>
-  <% modal.with_header title: "Create Module for Course - #{@course.name}", context: "Start now and make someone's life easier!" %>
+  <% modal.with_header title: "Create Module", context: "Start now and make someone's life easier!" %>
 
   <%= render FormComponent.new(
     resource: @course_module,
@@ -7,7 +7,6 @@
     method: :post
   ) do |form| %>
     <% form.with_text_field name: :name, placeholder: 'Module Name' %>
-    <% form.with_text_area_field name: :description, placeholder: 'Module Description' %>
 
     <%= form.with_submit label: "Create Course Module" %>
   <% end %>

@@ -1,28 +1,38 @@
 <div class='container mx-auto p-4 w-3/5 mt-11'>
-  <div class='text-balance'>
-    <div class="flex justify-between items-start">
-      <h1 class='text-xl font-bold'>Your Courses</h1>
-      <%= modal_button_component(label: 'Create Course', icon_name: 'add', path: new_admin_course_path, size: 'small') %>
+  <div class="flex justify-between items-start">
+    <h1 class='text-xl font-bold'>Your Courses</h1>
+    <%= modal_button_component(label: 'Create Course', icon_name: 'add', path: new_admin_course_path, size: 'small') %>
+  </div>
+
+  <%# --- Active courses --- %>
+  <div class='flex flex-col space-y-4 rounded-xl shadow-lg shadow-black p-3'> <%# rounded-xl shadow-lg shadow-black %>
+    <h2 class='text-lg font-bold'> Active courses </h2>
+    <div class='p-4 rounded-xl bg-purple-300 shadow-lg shadow-black'>
+      <p class='text-sm'>Active courses are courses that are published and available for sale. Draft courses, on the other hand, are still in progress and not visible to students. To make your draft course available online, please activate it..</p>
     </div>
+    <% if @courses.active.none? %>
+      <p class='italic text-xl'>There are no active courses.</p>
+    <% else %>
+      <p class='my-4 italic text-xl'>There are no active courses.</p>
+      <%= render partial: 'courses_list', locals: { courses: @courses.active } %>
+    <% end %>
+  </div>
 
-    <%# --- Courses --- %>
-    <ul class="grid grid-cols-3 gap-4 mt-4">
-      <% @courses.each do |course| %>
-        <%= link_to admin_course_path(course) do %>
-          <li class="p-3 w-60 h-80 rounded-lg bg-white shadow-xl shadow-black border border-black
-                      hover:bg-purple-200 hover:scale-105 transition-transform duration-300">
+  <%# --- Separation line --- %>
+  <%# <div class="border-b-4 border-gray-500 my-6"></div> %>
 
-              <%# --- Video Cover Image --- %>
-              <% if course.image.attached? %>
-                <%= image_tag course.image, class: 'object-cover w-full h-40 mb-2 rounded-lg' %>
-              <% else %>
-                <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg", class: 'object-cover w-full h-40 mb-2 rounded-lg' %>
-              <% end %>
+  <%# --- Draft courses --- %>
 
-              <h2 class="text-sm font-bold line-clamp-3 m-2"><%= course.name %></h2>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
+  <div class='flex flex-col space-y-4 mt-10 rounded-xl shadow-lg shadow-black p-3'> <%# rounded-xl shadow-lg shadow-black %>
+    <h2 class='text-lg font-bold'> Draft courses </h2>
+    <div class='p-4 rounded-xl bg-gray-300 shadow-lg shadow-black'>
+      <p class='text-sm'>Draft courses are courses still being worked on and are not visible to students or available for sale. Active courses, on the other hand, are fully published and accessible to students. To make a draft course available online, please activate it.</p>
+    </div>
+    <% if @courses.draft.none? %>
+      <p class='italic text-xl'>There are no draft courses.</p>
+    <% else %>
+      <p class='my-4 italic text-xl'>There are no active courses.</p>
+      <%= render partial: 'courses_list', locals: { courses: @courses.draft } %>
+    <% end %>
   </div>
 </div>

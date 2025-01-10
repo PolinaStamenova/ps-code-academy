@@ -1,6 +1,6 @@
 class Admin::ModuleLessonsController < Admin::ApplicationController
   before_action :set_course, :set_course_module
-  before_action :set_module_lesson, only: %i[show edit update destroy]
+  before_action :set_module_lesson, only: %i[show edit update destroy preview]
 
   def index
     @module_lessons = @course_module.module_lessons
@@ -41,6 +41,8 @@ class Admin::ModuleLessonsController < Admin::ApplicationController
                   notice: 'Module lesson was successfully destroyed.')
   end
 
+  def preview; end
+
   private
 
   def set_course
@@ -56,6 +58,6 @@ class Admin::ModuleLessonsController < Admin::ApplicationController
   end
 
   def module_lesson_params
-    params.require(:module_lesson).permit(:name, :description, :video)
+    params.require(:module_lesson).permit(:name, :description, :video, :content)
   end
 end

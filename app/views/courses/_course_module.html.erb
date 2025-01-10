@@ -1,0 +1,38 @@
+<%# --- Course Modules --- %>
+
+<h2 class='text-xl font-medium text-black'>Modules </h2>
+
+<ul class='rounded-lg flex flex-col gap-2'>
+  <% @course.course_modules.each do |course_module| %>
+    <li class='bg-purple-200 rounded-lg hover:bg-purple-300' data-controller="chevron-down">
+      <div class='flex flex justify-between items-center py-2 px-4'>
+        <div class='flex gap-2 items-center '>
+          <i class='fa-solid fa-chevron-down cursor-pointer' data-action="click->chevron-down#chevron" data-chevron-down-target="chevron"></i>
+          <p class='font-medium'><%= course_module.name %></p>
+        </div>
+
+        <%= course_module.module_lessons.count %> <%= course_module.module_lessons.one? ? 'lesson' : 'lessons' %>
+      </div>
+
+      <%# --- List of Module Lessons --- %>
+      <ul class='hidden flex flex-col  bg-gray-100 rounded-b-lg' data-chevron-down-target="list">
+        <% course_module.module_lessons.each do |lesson| %>
+          <%= link_to course_course_module_module_lesson_path(@course, course_module, lesson) do %>
+            <li class='flex gap-2 flex items-center p-3 hover:bg-gray-200'>
+              <% if lesson.video.attached? %>
+              <i class='w-4 fa-brands fa-youtube'></i>
+              <% elsif lesson.content.present? %>
+                <i class="fa fa-book"></i>
+                <% else %>
+                <i class='w-4'></i>
+              <% end %>
+
+              <%= lesson.name %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+
