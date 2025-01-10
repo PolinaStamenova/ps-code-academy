@@ -10,7 +10,7 @@
   <div class="flex flex-col space-y-4">
     <% fields.each do |field| %>
       <div class="field">
-        <%= form.public_send(field.type, field.name, placeholder: field.placeholder) %>
+        <%= form.public_send(field.type, field.name, placeholder: field.placeholder, autofocus: true) %>
       </div>
     <% end %>
 

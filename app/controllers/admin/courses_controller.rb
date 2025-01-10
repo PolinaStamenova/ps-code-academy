@@ -1,10 +1,6 @@
 module Admin
   class CoursesController < Admin::ApplicationController
-    before_action :set_course, only: %i[show edit update destroy]
-
-    def index
-      @courses = current_user.courses.includes(course_modules: :module_lessons)
-    end
+    before_action :set_course, only: %i[show edit update destroy publish]
 
     def show; end
 
@@ -39,10 +35,22 @@ module Admin
       redirect_to admin_courses_path
     end
 
+    def active
+      @courses = current_user.courses.active.includes(course_modules: :module_lessons)
+    end
+
+    def draft
+      @courses = current_user.courses.draft.includes(course_modules: :module_lessons)
+    end
+
+    def publish
+      # @course.update(active: true)
+    end
+
     private
 
     def course_params
-      params.require(:course).permit(:name, :description, :video, :image)
+      params.require(:course).permit(:name, :description, :video, :image, :content)
     end
 
     def set_course

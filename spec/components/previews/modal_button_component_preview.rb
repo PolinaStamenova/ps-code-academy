@@ -14,7 +14,7 @@ class ModalButtonComponentPreview < ViewComponent::Preview
 
   # @!group With Icons
 
-  # Button icon_names options are: add, edit, delete, back
+  # Button icon_names options are: add, edit, delete, back, dollar, publish
   def add
     modal_button_component(label: 'Add button', path: '#', icon_name: 'add')
   end
@@ -29,6 +29,14 @@ class ModalButtonComponentPreview < ViewComponent::Preview
 
   def back
     modal_button_component(label: 'Delete button', path: '#', icon_name: 'back')
+  end
+
+  def dollar
+    modal_button_component(label: 'Delete button', path: '#', icon_name: 'dollar')
+  end
+
+  def publish
+    modal_button_component(label: 'Delete button', path: '#', icon_name: 'publish')
   end
 
   # @!endgroup

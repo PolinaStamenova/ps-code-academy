@@ -1,3 +1,4 @@
+
 <%= render ModalComponent.new do |modal| %>
   <% modal.with_header title: "Create Your Course", context: "Start now and make someone's life easier!" %>
 
@@ -8,6 +9,7 @@
   ) do |form| %>
     <% form.with_text_field name: :name, placeholder: 'Name' %>
     <% form.with_text_area_field name: :description, placeholder: 'Description' %>
+    <% form.with_rich_text_area_field name: :content, placeholder: 'Here comes the content' %>
 
     <% form.with_video description: 'Upload your video' %>
     <% form.with_image description: 'Upload your cover image' %>
@@ -15,3 +17,4 @@
     <%= form.with_submit label: "Create Course" %>
   <% end %>
 <% end %>
+

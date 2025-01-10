@@ -19,6 +19,10 @@ class Course < ApplicationRecord
   # Callbacks
   before_validation :set_slug
 
+  # Scopes
+  scope :active, -> { where(active: true) }
+  scope :draft, -> { where(active: false) }
+
   def to_param
     slug
   end

@@ -8,6 +8,8 @@ class ModuleLesson < ApplicationRecord
   has_one_attached :video
   has_many_attached :documents
 
+  has_rich_text :content
+
   # Validations
   validates :name, presence: true
   validate :name_unique_as_slug

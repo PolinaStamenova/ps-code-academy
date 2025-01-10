@@ -7,7 +7,6 @@
     method: :path
   ) do |form| %>
     <% form.with_text_field name: :name, placeholder: 'Module Name' %>
-    <% form.with_text_area_field name: :description, placeholder: 'Module Description' %>
 
     <%= form.with_submit label: "Update Course Module" %>
   <% end %>

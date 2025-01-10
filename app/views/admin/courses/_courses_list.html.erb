@@ -1,0 +1,18 @@
+<ul class="grid grid-cols-3 gap-4 mt-4">
+  <% courses.each do |course| %>
+    <%= link_to admin_course_path(course) do %>
+      <li class="p-3 w-60 h-80 rounded-lg bg-white shadow-xl shadow-black border border-black
+                  hover:bg-purple-200 hover:scale-105 transition-transform duration-300">
+
+          <%# --- Video Cover Image --- %>
+          <% if course.image.attached? %>
+            <%= image_tag course.image, class: 'object-cover w-full h-40 mb-2 rounded-lg' %>
+          <% else %>
+            <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg", class: 'object-cover w-full h-40 mb-2 rounded-lg' %>
+          <% end %>
+
+          <h2 class="text-sm font-bold line-clamp-3 m-2"><%= course.name %></h2>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

@@ -54,7 +54,9 @@ class ButtonComponent < ApplicationComponent
       'add' => 'fas fa-plus',
       'edit' => 'fas fa-edit',
       'delete' => 'fas fa-trash',
-      'back' => 'fas fa-arrow-left'
+      'back' => 'fas fa-arrow-left',
+      'dollar' => 'fas fa-dollar-sign',
+      'publish' => 'fas fa-upload'
     }
 
     icon_classes[@icon_name]
