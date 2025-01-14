@@ -6,10 +6,11 @@ class ModalButtonComponentPreview < ViewComponent::Preview
   # Action button
   # @param label text "The text to display in the button"
   # @param path text "The path to navigate to when the button is clicked"
+  # @param method text "The HTTP method to use when navigating to the path"
   # @param type text "The type of button to display: action, primary, danger"
   # @param size text "The size of the button: xs-small, x-small, small, medium, large, large-xl"
-  def default(label: 'Modal Button', path: new_admin_course_path, type: 'action', size: 'medium')
-    modal_button_component(label:, path:, type:, size:)
+  def default(label: 'Modal Button', path: new_admin_course_path, method: :get, type: 'action', size: 'medium')
+    modal_button_component(label:, path:, method:, type:, size:)
   end
 
   # @!group With Icons

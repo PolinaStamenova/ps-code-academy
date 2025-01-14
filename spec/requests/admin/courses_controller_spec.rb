@@ -8,9 +8,16 @@ RSpec.describe Admin::CoursesController, type: :request do
     sign_in user
   end
 
-  describe 'GET /index' do
+  describe 'GET /active_courses' do
     it 'returns http success' do
-      get admin_courses_path
+      get admin_active_courses_path
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'GET /draft_courses' do
+    it 'returns http success' do
+      get admin_draft_courses_path
       expect(response).to have_http_status(:success)
     end
   end
@@ -115,6 +122,36 @@ RSpec.describe Admin::CoursesController, type: :request do
     it 'redirects to the courses list' do
       delete admin_course_path(course)
       expect(response).to redirect_to(admin_courses_path)
+    end
+  end
+
+  describe 'POST /publish' do
+    it 'publishes the course' do
+      course = create(:course, user:)
+      post publish_admin_course_path(course)
+      course.reload
+
+      expect(course.active).to be(true)
+    end
+
+    it 'redirects to the course' do
+      post publish_admin_course_path(course)
+      expect(response).to redirect_to(admin_active_courses_path)
+    end
+  end
+
+  describe 'POST /unpublish' do
+    it 'publishes the course' do
+      course = create(:course, user:, active: true)
+      post unpublish_admin_course_path(course)
+      course.reload
+
+      expect(course.active).to be(false)
+    end
+
+    it 'redirects to the course' do
+      post unpublish_admin_course_path(course)
+      expect(response).to redirect_to(admin_draft_courses_path)
     end
   end
 end
