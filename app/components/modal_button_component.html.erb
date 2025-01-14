@@ -1,4 +1,4 @@
-<%= link_to path, class: full_classes, data: { turbo_frame: 'modal' } do %>
+<%= button_to path, method: method, class: full_classes, data: { turbo_frame: 'modal' }, disabled: disabled do %>
   <div>
     <%= label %>
     <i class="<%= icon_classes %>"></i>

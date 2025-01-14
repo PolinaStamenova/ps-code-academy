@@ -4,10 +4,17 @@ class ButtonComponentPreview < ViewComponent::Preview
   # Action button
   # @param label text "The text to display in the button"
   # @param path text "The path to navigate to when the button is clicked"
+  # @param method text "The HTTP method to use when navigating to the path"
   # @param type text "The type of button to display: action, primary, danger"
   # @param size text "The size of the button: small, medium, large, large-xl"
-  def default(label: 'Click here', path: '#', type: 'action', size: 'medium')
-    button_component(label:, path:, type:, size:)
+  def default(label: 'Click here', path: '#', method: :get, type: 'action', size: 'medium')
+    button_component(label:, path:, method:, type:, size:)
+  end
+
+  # Disabled button
+  # @param disabled text "Disable the button"
+  def disabled(label: 'Disabled', path: '#', type: 'action', size: 'medium', disabled: true)
+    button_component(label:, path:, type:, size:, disabled:)
   end
 
   # @!group With Icons

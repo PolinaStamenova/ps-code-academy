@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :courses, except: [:index] do
       member do
         post :publish
+          post :unpublish
       end
 
       resources :course_modules do

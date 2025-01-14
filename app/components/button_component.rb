@@ -1,19 +1,23 @@
 class ButtonComponent < ApplicationComponent
-  attr_reader :path, :label, :type, :size, :icon_name
+  attr_reader :path, :method, :label, :type, :size, :icon_name, :disabled
 
-  def initialize(path:, type: nil, label: nil, size: nil, icon_name: nil)
+  # TODO: Allow passing of htm opions(like disabled, ect.)
+  def initialize(path:, method: nil, type: nil, label: nil, # rubocop:disable Metrics/ParameterLists
+                 size: nil, icon_name: nil, disabled: nil)
     super
 
     @path = path
+    @method = method || :get
     @label = label || ''
     @type = type || 'action'
     @size = size || 'medium'
     @icon_name = icon_name
+    @disabled = disabled || false
   end
 
   def default_classes
     # Add gap-3 class only if there is a label (icon-only buttons should not have gap-3)
-    classes = 'border rounded-3xl p-2 hover:shadow-xl text-center flex justify-center items-center'
+    classes = 'border rounded-3xl p-2 text-center flex justify-center items-center'
 
     if @label.present?
       [classes, 'gap-3'].join(' ').strip if @label.present?
@@ -23,7 +27,14 @@ class ButtonComponent < ApplicationComponent
   end
 
   def full_classes
-    [default_classes, colors, size_classes].join(' ').strip
+    base_classes = [default_classes, size_classes]
+
+    base_classes << if @disabled
+                      'text-slate-400	bg-gray-300 hover:shadow-none border-white'
+                    else
+                      "#{colors} hover:shadow-xl"
+                    end
+    base_classes.join(' ').strip
   end
 
   def colors

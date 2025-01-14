@@ -1,6 +1,6 @@
 module Admin
   class CoursesController < Admin::ApplicationController
-    before_action :set_course, only: %i[show edit update destroy publish]
+    before_action :set_course, only: %i[show edit update destroy publish unpublish]
 
     def show; end
 
@@ -44,7 +44,19 @@ module Admin
     end
 
     def publish
-      # @course.update(active: true)
+      if @course.update(active: true)
+        redirect_to admin_active_courses_path, notice: 'Course published successfully'
+      else
+        redirect_to admin_course_path(@course), alert: 'Failed to publish course'
+      end
+    end
+
+    def unpublish
+      if @course.update(active: false)
+        redirect_to admin_draft_courses_path, notice: 'Course unpublished successfully'
+      else
+        redirect_to admin_course_path(@course), alert: 'Failed to unpublish course'
+      end
     end
 
     private
