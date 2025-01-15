@@ -22,6 +22,23 @@ RSpec.describe CoursesController, type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'GET /enrolled' do
+    it 'returns a successful response' do
+      get enrolled_courses_path
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns only enrolled courses' do
+      enrollment = create(:enrollment, user:)
+      courses << enrollment.course
+
+      get enrolled_courses_path
+      expect(response.body).not_to include(courses.first.name)
+      expect(response.body).to include(enrollment.course.name)
+    end
+  end
+
   describe 'GET /purchase' do
     it 'returns a successful response' do
       course = create(:course, user:)

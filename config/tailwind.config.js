@@ -23,5 +23,10 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
+  ],
+  safelist: [
+    'status-not-started',
+    'status-started',
+    'status-completed'
   ]
 }

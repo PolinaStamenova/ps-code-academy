@@ -12,7 +12,7 @@
   }
 
   /* Explicitly include input[type="text"] to override browser-specific default styles */
-  input.not[type="file"], input[type="text"], input[type="date"], textarea, select {
+  input:not[type="file"], input[type="text"], input[type="date"], textarea, select {
     @apply text-sm w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
       transition duration-300 ease-in-out transform 
       focus:outline-purple-300 
@@ -33,5 +33,21 @@
   }
 }
 
-
-
+/* Course Enrollment status classes */
+@layer utilities {
+  .status {
+    @apply text-xs font-medium w-24 p-1 rounded-xl text-center;
+  }
+  .status-not-started {
+    @apply bg-gray-300;
+  }
+  .status-started {
+    @apply bg-purple-300;
+  }
+  .status-completed {
+    @apply bg-lime-300;
+  }
+  .status-not-enrolled {
+    @apply text-white bg-black;
+  }
+}

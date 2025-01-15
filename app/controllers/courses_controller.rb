@@ -9,6 +9,10 @@ class CoursesController < ApplicationController
 
   def purchase; end
 
+  def enrolled
+    @courses = current_user.enrolled_courses
+  end
+
   private
 
   def set_course

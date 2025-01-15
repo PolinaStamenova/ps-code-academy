@@ -2,6 +2,8 @@ class PurchasesController < ApplicationController
   before_action :set_course, only: [:create]
 
   def create
+    # return redirect_back(fallback_location: course_path(course)), alert: 'Course not found.' unless @course
+
     # Exit if the user is already enrolled in the course
     if current_user.purchases.exists?(item: @course)
       redirect_to course_path(@course), alert: 'You have already purchased this course.'
@@ -32,6 +34,8 @@ class PurchasesController < ApplicationController
   def success
     purchase = Purchase.find(params[:id])
     purchase.update!(status: :succeeded)
+    Enrollment.create!(user: purchase.user, course: purchase.item, status: :not_started)
+
     redirect_to course_path(purchase.item), notice: 'Payment successful! You can now access the course.'
   end
 
@@ -45,7 +49,7 @@ class PurchasesController < ApplicationController
   private
 
   def set_course
-    @course = Course.active.find_by!(id: purchase_params[:course_id])
+    @course = Course.active.find_by(id: purchase_params[:course_id])
   end
 
   def purchase_params

@@ -7,6 +7,8 @@ class Course < ApplicationRecord
   belongs_to :user
   has_many :course_modules, dependent: :destroy
   has_many :purchases, foreign_key: :item_id
+  # TODO: What happens if a course is deleted? Should we keep the enrollment?
+  has_one :enrollment, dependent: :destroy
 
   has_one_attached :video
   has_one_attached :image
@@ -32,6 +34,10 @@ class Course < ApplicationRecord
     # TODO: Add price in cents to the model
     # TODO: Implement a better way to handle prices
     (18 * 100).to_i
+  end
+
+  def enrolled?(user)
+    enrollment&.user == user
   end
 
   private

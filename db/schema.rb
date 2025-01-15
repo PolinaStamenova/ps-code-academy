@@ -75,6 +75,17 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_14_080248) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "enrollments", force: :cascade do |t|
+    t.integer "progress", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
   create_table "module_lessons", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -118,6 +129,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_14_080248) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "course_modules", "courses"
   add_foreign_key "courses", "users"
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "module_lessons", "course_modules"
   add_foreign_key "purchases", "courses", column: "item_id"
   add_foreign_key "purchases", "users"

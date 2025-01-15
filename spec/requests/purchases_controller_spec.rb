@@ -49,6 +49,7 @@ RSpec.describe PurchasesController, type: :request do
       purchase.reload
 
       expect(purchase.status).to eq('succeeded')
+      expect(Enrollment.exists?(user:, course:)).to be_truthy
       expect(response).to redirect_to(course_path(course))
       expect(flash[:notice]).to eq('Payment successful! You can now access the course.')
     end

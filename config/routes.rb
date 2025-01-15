@@ -14,11 +14,11 @@ Rails.application.routes.draw do
     get '/active_courses', to: 'courses#active', as: :active_courses
     get '/draft_courses', to: 'courses#draft', as: :draft_courses
 
-    resources :courses, except: [:index] do
-      member do
-        post :publish
+      resources :courses, except: [:index] do
+        member do
+          post :publish
           post :unpublish
-      end
+        end
 
       resources :course_modules do
         resources :module_lessons do
@@ -37,6 +37,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/enrolled_courses', to: 'courses#enrolled', as: :enrolled_courses
+  
   resources :courses, only: [:index, :show] do
     member do
       post :purchase

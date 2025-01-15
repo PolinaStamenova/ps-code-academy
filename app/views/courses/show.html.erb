@@ -5,12 +5,17 @@
     <%= button_component(label: 'Back', path: courses_path, type: "primary", icon_name: 'back', size: 'x-small') %>
 
     <div class='text-balance flex flex-col gap-3'>
-      <%# --- Course Name & Action Buttons --- %>
+      <%# --- Course Name --- %>
       <div class='flex justify-between items-start'>
         <h1 class='text-xl font-bold'><%= @course.name %></h1>
 
+        <%# --- Buy Buttons --- %>
+        <% if @course.enrolled?(current_user)%>
+          <p class='text-s w-24 p-2 rounded-xl text-center bg-purple-300'>Enrolled</p>
+        <% else %>
           <%= modal_button_component(label: 'Buy', method: :post, path: purchase_course_path(course_id: @course.id),
           icon_name: 'dollar', size: 'small') %>
+        <% end %>
       </div>
 
       <%# TODO: Extract into partial when needed %>
