@@ -2,16 +2,13 @@ class PurchasesController < ApplicationController
   before_action :set_course, only: [:create]
 
   def create
-    # return redirect_back(fallback_location: course_path(course)), alert: 'Course not found.' unless @course
-
     # Exit if the user is already enrolled in the course
-    if current_user.purchases.exists?(item: @course)
+    if current_user.purchases.succeeded.exists?(item: @course)
       redirect_to course_path(@course), alert: 'You have already purchased this course.'
 
       return
     end
 
-    # Create a pending purchase record
     purchase = current_user.purchases.create!(
       item: @course,
       user: current_user,

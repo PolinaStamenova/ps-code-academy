@@ -12,7 +12,7 @@ RSpec.describe PurchasesController, type: :request do
   describe 'POST /create' do
     context 'when user is already enrolled in the course' do
       before do
-        create(:purchase, user:, item: course)
+        create(:purchase, user:, item: course, status: :succeeded)
       end
 
       it 'does not create a new Purchase and redirects with an alert' do
@@ -27,7 +27,7 @@ RSpec.describe PurchasesController, type: :request do
 
     context 'when user is not yet enrolled in the course' do
       it 'creates a new Purchase and redirects to Stripe session URL' do
-        allow_any_instance_of(StripeCheckoutSessionService).to receive(:call).and_return(OpenStruct.new( # rubocop:disable Style/OpenStructUse
+        allow_any_instance_of(StripeCheckoutSessionService).to receive(:call).and_return(OpenStruct.new(
                                                                                            id: 'session_id', url: 'https://stripe.com/session'
                                                                                          ))
 
@@ -37,6 +37,19 @@ RSpec.describe PurchasesController, type: :request do
 
         expect(Purchase.last.stripe_session_id).to match('session_id')
         expect(response).to redirect_to('https://stripe.com/session')
+      end
+    end
+
+    context 'when the course has pending purchase' do
+      it 'updates the pending purchase status to failed' do
+        pending_purchase = create(:purchase, user:, item: course, status: :pending)
+        expect(course.purchases.where(status: :faild).count).to eq(0)
+
+        expect do
+          post purchases_path, params: { purchase: { course_id: course.id } }
+        end.to change { course.purchases.where(status: :faild).count }.by(0)
+
+        expect(pending_purchase.reload.status).to eq('failed')
       end
     end
   end
