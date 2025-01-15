@@ -1,0 +1,10 @@
+<%= render ModalComponent.new do |modal| %>
+  <% modal.with_header title: "Purchase this Course", context: "Thank you for choosing to purchase this course. Please follow the instructions to complete your purchase." %>
+
+  <%= form_with url: purchases_path, method: :post, data: { turbo: false } do |form| %>
+    <%= form.hidden_field :course_id, value: @course.id, name: 'purchase[course_id]' %>
+
+    <%= form.submit "Purchase" %>
+  <% end %>
+<% end %>
+

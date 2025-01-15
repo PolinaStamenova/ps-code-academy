@@ -6,6 +6,7 @@ class Course < ApplicationRecord
   # Associations
   belongs_to :user
   has_many :course_modules, dependent: :destroy
+  has_many :purchases, foreign_key: :item_id
 
   has_one_attached :video
   has_one_attached :image
@@ -25,6 +26,12 @@ class Course < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def price_in_cents
+    # TODO: Add price in cents to the model
+    # TODO: Implement a better way to handle prices
+    (18 * 100).to_i
   end
 
   private

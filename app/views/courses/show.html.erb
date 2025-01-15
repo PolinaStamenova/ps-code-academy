@@ -9,8 +9,8 @@
       <div class='flex justify-between items-start'>
         <h1 class='text-xl font-bold'><%= @course.name %></h1>
 
-        <%# TODO: Disable button if course is purchased %>
-        <%= modal_button_component(label: 'PURCHASE', path: '#', icon_name: 'dollar', size: 'small') %>
+          <%= modal_button_component(label: 'Buy', method: :post, path: purchase_course_path(course_id: @course.id),
+          icon_name: 'dollar', size: 'small') %>
       </div>
 
       <%# TODO: Extract into partial when needed %>

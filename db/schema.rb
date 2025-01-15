@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_01_09_184400) do
+ActiveRecord::Schema[7.0].define(version: 2025_01_14_080248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,19 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_09_184400) do
     t.index ["course_module_id"], name: "index_module_lessons_on_course_module_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.string "stripe_session_id"
+    t.integer "status", default: 0, null: false
+    t.integer "quantity", default: 1, null: false
+    t.integer "amount_in_cents", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_purchases_on_item_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "email", default: "", null: false
@@ -106,4 +119,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_09_184400) do
   add_foreign_key "course_modules", "courses"
   add_foreign_key "courses", "users"
   add_foreign_key "module_lessons", "course_modules"
+  add_foreign_key "purchases", "courses", column: "item_id"
+  add_foreign_key "purchases", "users"
 end

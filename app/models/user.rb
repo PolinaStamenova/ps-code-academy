@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   # Associations
   has_many :courses, dependent: :destroy
+  # TODO: if user deleted update purchase.user to nil
+  has_many :purchases
 
   # Validations
   validates :first_name, :last_name,
@@ -25,5 +27,9 @@ class User < ApplicationRecord
 
   def student?
     role == 'student'
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

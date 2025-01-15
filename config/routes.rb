@@ -30,7 +30,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :purchases, only: [:create] do
+    member do
+      get :success
+      get :cancel
+    end
+  end
+
   resources :courses, only: [:index, :show] do
+    member do
+      post :purchase
+    end
+
     resources :course_modules, only: [:show] do
       resources :module_lessons, only: [:show]
     end
