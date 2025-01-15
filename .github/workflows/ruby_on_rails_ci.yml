@@ -54,6 +54,9 @@ jobs:
         bundle install --jobs 4 --retry 3
         yarn install --frozen-lockfile
 
+    - name: Add Rails test key
+      run: echo "${{ secrets.RAILS_TEST_KEY }}" > config/credentials/test.key
+      
     - name: Setup Database
       env:
         RAILS_ENV: test
