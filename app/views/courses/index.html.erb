@@ -1,7 +1,27 @@
-<div class='container mx-auto p-4 w-3/5 mt-10'>
-  <div class='text-balance'>
-    <h1 class='text-lg font-bold'> Your enrolled courses </h1>
+<div class='container mx-auto p-4 w-3/5 mt-10 flex flex-col gap-4'>
+  <h1 class='text-lg font-bold'> Explore Courses </h1>
+
+  <%# --- Information box --- %>
+  <div class='p-4 rounded-xl bg-purple-300 shadow-lg'>
+    <p class='text-sm'>
+      <span class="text-purple-700"> Welcome to the course catalog!</span>
+      Here, you'll find all the available courses created by expert instructors.
+      Whether you're looking to enhance your skills, dive into a new subject, or explore your passions, there's something here for everyone.
+      Browse through the options, choose the course that fits your goals, and start your learning journey today.
+      Purchase a course and unlock a world of knowledge at your fingertips! 🌟
+    </p>
+  </div>
+
+  <%= turbo_frame_tag "courses-container" do %>
+  <%# --- Filter --- %>
+   <% @filters = [ { label: 'All', path: courses_path(filter: :all), filter_name: 'all' },
+                  { label: 'Enrolled', path: courses_path(filter: :enrolled), filter_name: 'enrolled' },
+                  { label: 'Not Enrolled', path: courses_path(filter: :not_enrolled), filter_name: 'not_enrolled' }
+                 ] %>
+
+    <%= render partial: '/courses/turbo_filter', locals: { filters: @filters, turbo_frame_id: 'courses-container' } %>
+
     <%# --- Courses --- %>
     <%= render partial: '/courses/courses_list', locals: { courses: @courses } %>
-  </div>
+  <% end %>  
 </div>

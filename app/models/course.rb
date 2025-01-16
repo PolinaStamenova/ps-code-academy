@@ -40,6 +40,10 @@ class Course < ApplicationRecord
     enrollment&.user == user
   end
 
+  def status
+    enrollment&.status || 'Not enrolled'
+  end
+
   private
 
   def set_slug

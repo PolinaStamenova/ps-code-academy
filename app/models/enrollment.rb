@@ -7,17 +7,15 @@ class Enrollment < ApplicationRecord
   belongs_to :course
 
   def calculate_progress
-    total_lessons = course.lessons.count
-    completed_lessons = CompletedLesson.where(user:, lesson: course.lessons).count
+    # TODO: Implement logic
 
-    if total_lessons.zero?
-      0.0
-    else
-      ((completed_lessons.to_f / total_lessons) * 100).round(2)
-    end
-  end
+    # total_lessons = course.lessons.count
+    # completed_lessons = CompletedLesson.where(user:, lesson: course.lessons).count
 
-  def formatted_status
-    self[:status].capitalize.split('_').join(' ')
+    # if total_lessons.zero?
+    #   0.0
+    # else
+    #   ((completed_lessons.to_f / total_lessons) * 100).round(2)
+    # end
   end
 end

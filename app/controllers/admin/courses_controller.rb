@@ -45,6 +45,8 @@ module Admin
 
     def publish
       if @course.update(active: true)
+        @course.update!(published_at: Date.current)
+
         redirect_to admin_active_courses_path, notice: 'Course published successfully'
       else
         redirect_to admin_course_path(@course), alert: 'Failed to publish course'
@@ -53,6 +55,8 @@ module Admin
 
     def unpublish
       if @course.update(active: false)
+        @course.update!(unpublished_at: Date.current)
+
         redirect_to admin_draft_courses_path, notice: 'Course unpublished successfully'
       else
         redirect_to admin_course_path(@course), alert: 'Failed to unpublish course'

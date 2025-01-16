@@ -2,7 +2,7 @@
 
   <div class='container mx-auto p-4 w-3/5 flex flex-col gap-3'>
     <%# --- Back Buttons --- %>
-    <%= button_component(label: 'Back', path: courses_path, type: "primary", icon_name: 'back', size: 'x-small') %>
+    <%= button_component(label: 'Back', path: @course.enrolled?(current_user) ? enrolled_courses_path : courses_path, type: "primary", icon_name: 'back', size: 'x-small') %>
 
     <div class='text-balance flex flex-col gap-3'>
       <%# --- Course Name --- %>
