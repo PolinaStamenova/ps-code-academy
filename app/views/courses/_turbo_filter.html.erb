@@ -1,0 +1,7 @@
+<div class='flex gap-4'>
+  <% @filters.each do |filter| %>
+    <%= link_to filter[:label], filter[:path], 
+                class: "filter #{active_filter_class(@current_filter, filter[:filter_name])}",
+                data: { turbo_frame: turbo_frame_id } %>
+  <% end %>
+</div>

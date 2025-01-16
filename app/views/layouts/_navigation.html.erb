@@ -11,16 +11,16 @@
   <nav class="flex-1 px-4 py-6">
     <ul class="space-y-2 font-medium">
       <li>
-        <%= link_to "Dashboard", dashboard_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm" %>
+        <%= link_to "Dashboard", dashboard_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm #{current_page?(dashboard_path) ? 'border border-white' : ''}" %>
       </li>
       <li>
-        <%= link_to "My Courses", enrolled_courses_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm mb-2" %>
+        <%= link_to "My Learning", enrolled_courses_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm #{current_page?(enrolled_courses_path) ? 'border border-white' : ''}" %>
       </li>
       <li>
-        <%= link_to "All Course", courses_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm" %>
+        <%= link_to "Explore Courses", courses_path, class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm #{current_page?(courses_path) ? 'border border-white' : ''}" %>
       </li>
       <li>
-        <%= link_to "My Wishlist", "#", class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm mb-2" %>
+        <%= link_to "My Wishlist", "#", class: "block hover:bg-purple-200 hover:text-black px-3 py-2 rounded-xl text-sm" %>
       </li>
     </ul>
   </nav>

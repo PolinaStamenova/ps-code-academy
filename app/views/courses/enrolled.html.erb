@@ -1,7 +1,27 @@
-<div class='container mx-auto p-4 w-3/5 mt-10'>
-  <div class='text-balance'>
-    <h1 class='text-lg font-bold'> Your enrolled courses </h1>
-    <%# --- Courses --- %>
-    <%= render partial: '/courses/courses_list', locals: { courses: @courses } %>
+<div class='container mx-auto p-4 w-3/5 mt-10 flex flex-col gap-4'>
+  <h1 class='text-lg font-bold'> Your enrolled courses </h1>
+
+  <%# --- Information box --- %>
+  <div class='p-4 rounded-xl bg-purple-300 shadow-lg'>
+    <p class='text-sm'>
+      <span class="text-purple-700">Welcome to your learning dashboard!</span> Here, you'll find all the courses you’re enrolled in.
+      Dive back into your lessons, pick up where you left off, and track your progress as you master new skills.
+      Each course is now at your fingertips, ready to help you achieve your goals.
+      <span class="text-purple-700">Remember, learning is a journey — enjoy every step of it! 🚀</span>
+    </p>
   </div>
+
+  <%= turbo_frame_tag "courses-container" do %>
+  <%# --- Filter --- %>
+   <% @filters = [ { label: 'All', path: enrolled_courses_path(filter: :all), filter_name: 'all' },
+                  { label: 'Not started', path: enrolled_courses_path(filter: :not_started), filter_name: 'not_started' },
+                  { label: 'Started', path: enrolled_courses_path(filter: :started), filter_name: 'started' },
+                  { label: 'Completed', path: enrolled_courses_path(filter: :completed), filter_name: 'completed' }
+                 ] %>
+
+    <%= render partial: '/courses/turbo_filter', locals: { filters: @filters, turbo_frame_id: 'courses-container'} %>
+
+    <%# --- Courses --- %>
+    <%= render partial: '/courses/courses_list', locals: { courses: @courses} %>
+  <% end %>  
 </div>

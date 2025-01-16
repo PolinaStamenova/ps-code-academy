@@ -35,4 +35,16 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def not_started_courses
+    enrolled_courses.where(enrollments: { status: :not_started })
+  end
+
+  def started_courses
+    enrolled_courses.where(enrollments: { status: :started })
+  end
+
+  def completed_courses
+    enrolled_courses.where(enrollments: { status: :completed })
+  end
 end

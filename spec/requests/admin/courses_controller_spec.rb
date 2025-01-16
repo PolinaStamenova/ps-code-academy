@@ -132,6 +132,7 @@ RSpec.describe Admin::CoursesController, type: :request do
       course.reload
 
       expect(course.active).to be(true)
+      expect(course.published_at).to be_present
     end
 
     it 'redirects to the course' do
@@ -147,6 +148,7 @@ RSpec.describe Admin::CoursesController, type: :request do
       course.reload
 
       expect(course.active).to be(false)
+      expect(course.unpublished_at).to be_present
     end
 
     it 'redirects to the course' do
