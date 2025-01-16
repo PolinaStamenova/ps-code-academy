@@ -65,10 +65,10 @@ jobs:
         bin/rails db:create
         bin/rails db:schema:load
 
-    - name: Run Tests
+    - name: Run Rspec
       env:
         RAILS_ENV: test
-      run: bin/rails test
+      run: rspec spec
 
     - name: Run Linters
       run: |
