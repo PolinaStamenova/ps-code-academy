@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'associations' do
     it { should have_many(:courses) }
+    it { should have_many(:purchases) }
+    it { should have_many(:enrollments) }
   end
 
   describe 'validations' do

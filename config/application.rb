@@ -23,5 +23,6 @@ module PSCodeAcademy
     config.view_component.preview_paths << "#{Rails.root}/spec/components/previews"
     config.view_component.default_preview_layout = "application"
     config.view_component.generate.stimulus_controller = true
+    config.autoload_paths << Rails.root.join('app/services')
   end
 end
