@@ -27,7 +27,7 @@ RSpec.describe PurchasesController, type: :request do
 
     context 'when user is not yet enrolled in the course' do
       it 'creates a new Purchase and redirects to Stripe session URL' do
-        allow_any_instance_of(StripeCheckoutSessionService).to receive(:call).and_return(OpenStruct.new(
+        allow_any_instance_of(StripeCheckoutSessionService).to receive(:call).and_return(OpenStruct.new( # rubocop:disable Style/OpenStructUse
                                                                                            id: 'session_id', url: 'https://stripe.com/session'
                                                                                          ))
 
