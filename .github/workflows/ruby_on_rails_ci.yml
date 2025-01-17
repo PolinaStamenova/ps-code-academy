@@ -67,6 +67,8 @@ jobs:
 
     # Precompile assets
     - name: Assets Precompile
+      env:
+        RAILS_ENV: test
       run: bundle exec rake assets:precompile
 
     - name: Run Rspec
