@@ -65,6 +65,10 @@ jobs:
         bin/rails db:create
         bin/rails db:schema:load
 
+    # Precompile assets
+    - name: Assets Precompile
+      run: bundle exec rake assets:precompile
+
     - name: Run Rspec
       env:
         RAILS_ENV: test
