@@ -52,7 +52,7 @@ RSpec.describe Admin::CourseModulesController, type: :request do
       it 'redirects to the created course module' do
         post admin_course_course_modules_path(course), params: { course_module: attributes_for(:course_module) }
 
-        expect(response).to redirect_to(admin_course_course_module_path(course, CourseModule.last))
+        expect(response).to redirect_to(admin_course_path(course))
       end
     end
 
@@ -81,7 +81,7 @@ RSpec.describe Admin::CourseModulesController, type: :request do
         put admin_course_course_module_path(course, course_module), params: { course_module: new_attributes }
         course_module.reload
 
-        expect(response).to redirect_to(admin_course_course_module_path(course, course_module))
+        expect(response).to redirect_to(admin_course_path(course))
       end
     end
 
@@ -105,7 +105,7 @@ RSpec.describe Admin::CourseModulesController, type: :request do
     it 'redirects to the course modules list' do
       delete admin_course_course_module_path(course, course_module)
 
-      expect(response).to redirect_to(admin_course_course_modules_path(course))
+      expect(response).to redirect_to(admin_course_path(course))
     end
   end
 end
