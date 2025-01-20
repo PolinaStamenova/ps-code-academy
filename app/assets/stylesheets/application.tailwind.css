@@ -12,7 +12,7 @@
   }
 
   /* Explicitly include input[type="text"] to override browser-specific default styles */
-  input:not[type="file"], input[type="text"], input[type="date"], textarea, select {
+  input_not[type="file"], input[type="text"], input[type="date"], textarea, select {
     @apply text-sm w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm 
       transition duration-300 ease-in-out transform 
       focus:outline-purple-300 
