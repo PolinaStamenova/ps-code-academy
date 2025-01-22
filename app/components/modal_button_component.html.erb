@@ -1,6 +1,6 @@
 <%= button_to path, method: method, class: full_classes, data: { turbo_frame: 'modal' }, disabled: disabled do %>
-  <div>
-    <i class="<%= icon_classes %>"></i>
-    <%= label %>
+  <div class="<%= button_content_classes %>">
+    <%= icon_tag if icon_name.present? %>
+    <%= label if label.present? %>
   </div>
 <% end %>
