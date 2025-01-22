@@ -13,7 +13,8 @@
         </div>
         <div class='flex gap-3 items-center'>
           <%= course_module.module_lessons.count %> lessons &#8226; <%= course_module.duration %>
-          <%= modal_button_component(label: 'Add Lesson', path: new_admin_course_course_module_module_lesson_path(@course, course_module), icon_name: 'add', size: 'small') %>
+          <%= modal_button_component(label: 'Assignment', path: new_admin_course_course_module_assignment_path(@course, course_module), icon_name: 'add', size: 's-small') %>
+          <%= modal_button_component(label: 'Lesson', path: new_admin_course_course_module_module_lesson_path(@course, course_module), icon_name: 'add', size: 's-small') %>
           <%= modal_button_component(path: edit_admin_course_course_module_path(@course, course_module), icon_name: 'edit', size: 'xs-small') %>
           <%= modal_button_component(path: admin_course_course_module_path(@course, course_module), icon_name: 'delete', size: 'xs-small') %>
           <%= form_with model: [:admin, @course, course_module], method: :delete, data: { turbo_confirm: 'Are you sure?' } do |form| %>

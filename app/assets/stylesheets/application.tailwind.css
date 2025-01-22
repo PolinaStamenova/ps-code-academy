@@ -58,4 +58,12 @@
   .filter-active {
     @apply bg-purple-800;
   }
+
+  .error-message {
+    @apply text-red-500 text-sm mb-1;
+  }
+
+  .border-error {
+    @apply border-red-500 bg-red-50 focus:ring-red-500 !important;
+  }
 }

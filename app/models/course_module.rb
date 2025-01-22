@@ -2,7 +2,9 @@ class CourseModule < ApplicationRecord
   # Associations
   belongs_to :course
   has_many :module_lessons, dependent: :destroy
+  has_many :assignments, dependent: :destroy
 
+  # ActiveStorage
   has_one_attached :video
   has_many_attached :documents
 

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
             get :preview
           end
         end
+        
+        resources :assignments, only: [:new, :create]
       end
     end
   end

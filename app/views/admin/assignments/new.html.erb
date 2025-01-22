@@ -1,0 +1,21 @@
+<%= render ModalComponent.new do |modal| %>
+  <% modal.with_header title: "Create an Assignment", context: "Start now and make someone's life easier!" %>
+
+  <%= render FormComponent.new(
+    resource: @assignment,
+    action: admin_course_course_module_assignments_path(@course, @course_module),
+    method: :post
+  ) do |form| %>
+    <% form.with_text_field name: :name, placeholder: 'Name', required: true %>
+    <% form.with_text_field name: :github_repo_link, placeholder: 'GitHub repo link' %>
+    <% form.with_time_field name: :estimated_time_in_minutes, placeholder: 'Estimated time (hours:minutes), e.g., 1:30', 
+                            required: true, 
+                            value_in_hours: params.dig(:assignment, "estimated_time_in_minutes_hours"), 
+                            value_in_minutes: params.dig(:assignment, "estimated_time_in_minutes_minutes") %>
+    <% form.with_rich_text_area_field name: :content, placeholder: 'Here comes the content', required: true %>
+
+    <%= form.with_submit label: "Create Assignment" %>
+  <% end %>
+<% end %>
+
+

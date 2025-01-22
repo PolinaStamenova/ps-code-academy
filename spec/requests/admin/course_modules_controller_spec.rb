@@ -57,7 +57,7 @@ RSpec.describe Admin::CourseModulesController, type: :request do
     end
 
     context 'with invalid params' do
-      it 'returns a success response (i.e. to display the "new" template)' do
+      it 'returns unprocessable entity response' do
         post admin_course_course_modules_path(course),
              params: { course_module: attributes_for(:course_module, name: nil) }
 
