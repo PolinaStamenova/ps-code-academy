@@ -15,15 +15,10 @@ class ButtonComponent < ApplicationComponent
     @disabled = disabled || false
   end
 
-  def default_classes
-    # Add gap-3 class only if there is a label (icon-only buttons should not have gap-3)
-    classes = 'border rounded-3xl p-2 text-center flex justify-center items-center'
+  private
 
-    if @label.present?
-      [classes, 'gap-3'].join(' ').strip if @label.present?
-    else
-      classes
-    end
+  def default_classes
+    'rounded-3xl p-2 text-center'
   end
 
   def full_classes
@@ -40,7 +35,7 @@ class ButtonComponent < ApplicationComponent
   def colors
     color_classes = {
       'action' => 'bg-black text-white',
-      'primary' => 'bg-white text-black border-black hover:bg-gray-200',
+      'primary' => 'bg-white text-black border border-black hover:bg-gray-200',
       'danger' => 'bg-red-600 text-black'
     }
 
@@ -71,5 +66,13 @@ class ButtonComponent < ApplicationComponent
     }
 
     icon_classes[@icon_name]
+  end
+
+  def button_content_classes
+    'flex justify-center items-center gap-2' if icon_name.present? && label.present?
+  end
+
+  def icon_tag
+    tag.i(class: icon_classes)
   end
 end

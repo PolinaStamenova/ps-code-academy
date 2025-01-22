@@ -5,6 +5,7 @@ RSpec.describe ModuleLesson, type: :model do
     it { should belong_to(:course_module) }
     it { should have_one_attached(:video) }
     it { should have_many_attached(:documents) }
+    it { should have_rich_text(:content) }
   end
 
   describe 'validations' do

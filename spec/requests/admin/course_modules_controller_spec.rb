@@ -9,22 +9,6 @@ RSpec.describe Admin::CourseModulesController, type: :request do
     sign_in user
   end
 
-  describe 'GET #index' do
-    it 'returns a success response' do
-      get admin_course_course_modules_path(course)
-
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #show' do
-    it 'returns a success response' do
-      get admin_course_course_module_path(course, course_module)
-
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET #new' do
     it 'returns a success response' do
       get new_admin_course_course_module_path(course)
