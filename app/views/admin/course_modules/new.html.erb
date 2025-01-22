@@ -6,7 +6,7 @@
     action: admin_course_course_modules_path(@course),
     method: :post
   ) do |form| %>
-    <% form.with_text_field name: :name, placeholder: 'Module Name' %>
+    <% form.with_text_field name: :name, placeholder: 'Name', required: true %>
 
     <%= form.with_submit label: "Create Course Module" %>
   <% end %>

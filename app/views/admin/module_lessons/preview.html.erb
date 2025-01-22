@@ -1,5 +1,5 @@
 <%= render ModalComponent.new do |modal| %>
-  <% modal.with_header title: "Create Lesoon for Module", context: "Start now and make someone's life easier!" %>
+  <% modal.with_header title: "Preview", context: "#{@module_lesson.name}" %>
 
   <%= @module_lesson.content.body %>
 <% end %>

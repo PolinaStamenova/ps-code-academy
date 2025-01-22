@@ -10,6 +10,7 @@ class Course < ApplicationRecord
   # TODO: What happens if a course is deleted? Should we keep the enrollment?
   has_one :enrollment, dependent: :destroy
 
+  # Active Storage
   has_one_attached :video
   has_one_attached :image
 

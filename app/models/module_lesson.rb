@@ -5,9 +5,11 @@ class ModuleLesson < ApplicationRecord
   # Associations
   belongs_to :course_module
 
+  # Active Storage
   has_one_attached :video
   has_many_attached :documents
 
+  # Action Text
   has_rich_text :content
 
   # Validations

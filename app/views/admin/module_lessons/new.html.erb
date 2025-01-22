@@ -1,14 +1,13 @@
 <%= render ModalComponent.new do |modal| %>
-  <% modal.with_header title: "Create Lesoon for Module - #{@course_module.name}", context: "Start now and make someone's life easier!" %>
+  <% modal.with_header title: "Create Lesoon", context: "Start now and make someone's life easier!" %>
 
   <%= render FormComponent.new(
     resource: @module_lesson,
     action: admin_course_course_module_module_lessons_path(@course, @course_module),
     method: :post
   ) do |form| %>
-    <% form.with_text_field name: :name, placeholder: 'Name' %>
-    <%# <% form.with_text_area_field name: :description, placeholder: 'Description' %>
-    <% form.with_rich_text_area_field name: :content, placeholder: 'Content comes here' %>
+    <% form.with_text_field name: :name, placeholder: 'Name', required: true %>
+    <% form.with_rich_text_area_field name: :content, placeholder: 'Content comes here', required: true %>
 
     <% form.with_video description: 'Upload your video' %>
 
