@@ -2,12 +2,6 @@ class Admin::CourseModulesController < Admin::ApplicationController
   before_action :set_course
   before_action :set_course_module, only: %i[show edit update destroy]
 
-  def index
-    @course_modules = current_user.courses.find_by!(slug: params[:course_id]).course_modules
-  end
-
-  def show; end
-
   def new
     @course_module = CourseModule.new
   end

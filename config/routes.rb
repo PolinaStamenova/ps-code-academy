@@ -20,14 +20,14 @@ Rails.application.routes.draw do
           post :unpublish
         end
 
-      resources :course_modules do
+      resources :course_modules, except: %i[index show] do
         resources :module_lessons do
           member do
             get :preview
           end
         end
-        
-        resources :assignments, only: [:new, :create]
+
+        resources :assignments, only: %i[new create]
       end
     end
   end
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   get '/enrolled_courses', to: 'courses#enrolled', as: :enrolled_courses
   
-  resources :courses, only: [:index, :show] do
+  resources :courses, only: %i[index show] do
     member do
       post :purchase
     end

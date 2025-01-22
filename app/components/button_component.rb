@@ -69,7 +69,7 @@ class ButtonComponent < ApplicationComponent
   end
 
   def button_content_classes
-    'flex justify-center items-center gap-3' if icon_name.present? && label.present?
+    'flex justify-center items-center gap-2' if icon_name.present? && label.present?
   end
 
   def icon_tag
