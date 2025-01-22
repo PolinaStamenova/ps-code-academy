@@ -12,7 +12,8 @@ class FormComponent < ApplicationComponent
   renders_many :fields, types: {
     text: { renders: FieldComponent::TextComponent, as: :text_field },
     text_area: { renders: FieldComponent::TextAreaComponent, as: :text_area_field },
-    rich_text_area: { renders: FieldComponent::RichTextAreaComponent, as: :rich_text_area_field }
+    rich_text_area: { renders: FieldComponent::RichTextAreaComponent, as: :rich_text_area_field },
+    time: { renders: FieldComponent::TimeComponent, as: :time_field }
   }
 
   renders_one :video, 'FileComponent::VideoComponent'
@@ -27,6 +28,14 @@ class FormComponent < ApplicationComponent
   def errors_class
     # TODO: Use TailwindCSS classes to style the errors
     'color: red; margin-bottom: 1rem'
+  end
+
+  def errors?(field)
+    @resource.errors[field.name].any?
+  end
+
+  def error_message_for(field)
+    "#{field.name.to_s.humanize} #{@resource.errors[field.name].first}"
   end
 
   class SubmitComponent < ApplicationComponent

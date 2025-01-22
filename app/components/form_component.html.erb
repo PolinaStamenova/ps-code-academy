@@ -1,17 +1,33 @@
 <%= form_with(model: @resource, url: @action, data: { controller: "form-handler", action: "form-handler#submit" }, local: true) do |form| %>
-  <% if @resource.errors.any? %>
-    <ul style="<%= errors_class %>">
-      <% @resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
   <div class="flex flex-col space-y-4">
     <% fields.each do |field| %>
-      <div class="field">
-        <%= form.public_send(field.type, field.name, placeholder: field.placeholder, autofocus: true) %>
-      </div>
+      <% if field.type == :time_field %>
+        <!-- Time Field Rendering -->
+        <div class="field">
+          <label class="block text-sm text-gray-700"><%= field.placeholder %></label>
+          <% if errors?(field)%>
+            <p class="error-message"><%= error_message_for(field) %></p>
+          <% end %>
+          <div class="flex items-center space-x-2">
+            <!-- Hours -->
+            <%= form.number_field "#{field.name}_hours", placeholder: 'Hours', min: 0, value: field.value_in_hours,
+                         class: "text-xs border-gray-300 rounded-lg text-center w-20 py-2 #{'border-error' if errors?(field)}" %>
+            <span>:</span>
+            <!-- Minutes -->
+            <%= form.number_field "#{field.name}_minutes", placeholder: 'Minutes', min: 0, max: 59, maxlength: "2", value: field.value_in_minutes,
+                                   class: "text-xs border-gray-300 rounded-lg text-center w-20 py-2 #{'border-error' if errors?(field)}" %>
+          </div>
+        </div>
+      <% else %>
+        <!-- Default Field Rendering -->
+        <div class="field">
+          <% if errors?(field)%>
+            <p class="error-message"><%= error_message_for(field) %></p>
+          <% end %>
+          <%= form.public_send(field.type, field.name, placeholder: field.placeholder, autofocus: true,
+                                class: "#{'border-error' if errors?(field)}") %>
+        </div>
+      <% end %>
     <% end %>
 
     <% if video? %>
@@ -26,6 +42,7 @@
       <%= render FileComponent::ImageComponent.new(form: form, description: image.description) %>
     <% end %>
 
+    <!-- Submit Button -->
     <div class="actions">
       <% if submit? %>
         <%= submit %>
@@ -33,6 +50,5 @@
         <%= form.submit %>
       <% end %>
     </div>
-
   </div>
-<% end %> 
+<% end %>
