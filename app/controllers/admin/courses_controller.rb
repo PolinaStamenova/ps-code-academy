@@ -32,7 +32,7 @@ module Admin
     def destroy
       @course.destroy
 
-      redirect_to admin_courses_path
+      redirect_to admin_draft_courses_path, status: :ok
     end
 
     def active
