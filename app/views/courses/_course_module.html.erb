@@ -15,33 +15,7 @@
       </div>
 
       <%# --- List of Module Lessons --- %>
-      <ul class='hidden flex flex-col bg-gray-100 rounded-b-lg' data-chevron-down-target="list">
-        <% course_module.module_lessons.each do |lesson| %>
-          <li class='flex gap-2 flex items-center p-3 <%= "hover:bg-gray-200" if lesson.course_module.course.enrolled?(current_user) %>'>
-        <% if lesson.course_module.course.enrolled?(current_user) %>
-          <%= link_to course_course_module_module_lesson_path(@course, course_module, lesson), class: 'flex gap-2 items-center w-full' do %>
-            <% if lesson.video.attached? %>
-          <i class='w-4 fa-brands fa-youtube'></i>
-            <% elsif lesson.content.present? %>
-          <i class="fa fa-book"></i>
-            <% else %>
-          <i class='w-4'></i>
-            <% end %>
-            <%= lesson.name %>
-          <% end %>
-        <% else %>
-          <% if lesson.video.attached? %>
-            <i class='w-4 fa-brands fa-youtube'></i>
-          <% elsif lesson.content.present? %>
-            <i class="fa fa-book"></i>
-          <% else %>
-            <i class='w-4'></i>
-          <% end %>
-          <%= lesson.name %>
-        <% end %>
-          </li>
-        <% end %>
-      </ul>
+      <%= render partial: 'module_lessons_list', locals: { course: @course, course_module: course_module  } %>
     </li>
   <% end %>
 </ul>

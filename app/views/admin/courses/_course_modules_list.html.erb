@@ -1,0 +1,28 @@
+<%# --- Course Modules --- %>
+
+<h2 class='text-xl font-medium text-black'><%= @course.course_modules.any? ? 'Course content' : 'No course content yet' %></h2>
+<%= modal_button_component(label: 'Add Module', path: new_admin_course_course_module_path(@course), icon_name: 'add', size: 'small') %>
+
+<ul class='rounded-lg flex flex-col gap-2'>
+  <% @course.course_modules.each do |course_module| %>
+    <li class='bg-purple-200 rounded-lg hover:bg-purple-300' data-controller="chevron-down">
+      <div class='flex flex justify-between items-center py-2 px-4'>
+        <div class='flex gap-2 items-center '>
+          <i class='fa-solid fa-chevron-down cursor-pointer' data-action="click->chevron-down#chevron" data-chevron-down-target="chevron"></i>
+          <p class='font-medium'><%= course_module.name %></p>
+        </div>
+        <div class='flex gap-3 items-center'>
+          <%= course_module.module_lessons.count %> lessons &#8226; <%= course_module.duration %>
+          <%= modal_button_component(label: 'Assignment', path: new_admin_course_course_module_assignment_path(@course, course_module), icon_name: 'add', size: 's-small') %>
+          <%= modal_button_component(label: 'Lesson', path: new_admin_course_course_module_module_lesson_path(@course, course_module), icon_name: 'add', size: 's-small') %>
+          <%= modal_button_component(path: edit_admin_course_course_module_path(@course, course_module), icon_name: 'edit', size: 'xs-small') %>
+          <%= modal_delete_button_component(path: admin_course_course_module_path(@course, course_module), size: 'xs-small') %>
+        </div>
+      </div>
+
+      <%# --- List of Module Lessons --- %>
+      <%= render partial: 'module_lessons_list', locals: { course: @course, course_module: course_module} %>
+    </li>
+  <% end %>
+</ul>
+

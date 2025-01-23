@@ -1,0 +1,26 @@
+<ul class='hidden bg-gray-100 p-4 rounded-b-lg' data-chevron-down-target="list">
+  <% course_module.module_lessons.each do |lesson| %>
+    <li class='flex justify-between items-center'>
+      <div class="flex gap-2 flex items-center">
+        <% if lesson.video.attached? %>
+        <i class='w-4 fa-brands fa-youtube'></i>
+        <% elsif lesson.documents.attached? %>
+          <i class='w-4 fa-solid fa-file'></i>
+          <% else %>
+          <i class='w-4'></i>
+        <% end %>
+
+        <%= lesson.name %>
+
+      </div>
+
+      <div class='flex gap-3 items-center'>
+        <% if lesson.content.present? %>
+          <%= modal_button_component(label: 'Preview', path: preview_admin_course_course_module_module_lesson_path(@course, course_module, lesson), size: 's-small') %>
+        <% end %>
+        <%= modal_button_component(path: edit_admin_course_course_module_module_lesson_path(@course, course_module, lesson), icon_name: 'edit', size: 'xs-small') %>
+        <%= modal_delete_button_component(path: admin_course_course_module_module_lesson_path(@course, course_module, lesson), size: 'xs-small') %>
+      </div>
+    </li>
+  <% end %>
+</ul>
