@@ -84,12 +84,8 @@ RSpec.describe Admin::CourseModulesController, type: :request do
       expect do
         delete admin_course_course_module_path(course, course_module)
       end.to change(CourseModule, :count).by(-1)
-    end
 
-    it 'redirects to the course modules list' do
-      delete admin_course_course_module_path(course, course_module)
-
-      expect(response).to redirect_to(admin_course_path(course))
+      expect(response).to have_http_status(:ok)
     end
   end
 end

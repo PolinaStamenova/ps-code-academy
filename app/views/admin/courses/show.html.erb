@@ -10,21 +10,15 @@
         <h1 class='text-xl font-bold'><%= @course.name %></h1>
 
         <%# --- Action Buttons --- %>
-        <div class='flex gap-3'>
+        <div class='flex gap-3 items-center'>
           <%= modal_button_component(path: edit_admin_course_path(@course), icon_name: 'edit', size: 'x-small') %>
-          <%= modal_button_component(path: edit_admin_course_path(@course), icon_name: 'delete', size: 'x-small') %>
-
+          <%= modal_delete_button_component(path: admin_course_path(@course), size: 'x-small') %>
+          
           <% if @course.active? %>
             <%= button_component(label: 'Unpublish', method: :post, path: unpublish_admin_course_path(@course), icon_name: 'publish', size: 'small') %>
           <% else %>
-            <%= button_component(label: 'Publish', method: :post, path: publish_admin_course_path(@course), icon_name: 'publish', size: 'small') %>
+            <%= button_component(label: 'Publish', method: :post, path: publish_admin_course_path(@course), icon_name: 'publish', size: 's-small') %>
           <% end %>
-
-
-          <%= form_with model: [:admin, @course], method: :delete, data: { turbo_confirm: 'Are you sure?' } do |form| %>
-            <%= form.submit 'Delete' %>
-          <% end %>
-
         </div>
       </div>
 
