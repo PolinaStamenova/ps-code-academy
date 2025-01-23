@@ -35,10 +35,13 @@ class Admin::ModuleLessonsController < Admin::ApplicationController
   end
 
   def destroy
-    @module_lesson.destroy
-
-    redirect_back(fallback_location: [:admin, @course],
-                  notice: 'Module lesson was successfully destroyed.')
+    if @module_lesson.destroy
+      redirect_back(fallback_location: [:admin, @course],
+                    notice: 'Module lesson was successfully destroyed.', status: :ok)
+    else
+      redirect_back(fallback_location: [:admin, @course],
+                    alert: "Module lesson couldn't be destroyed.", status: :unprocessable_entity)
+    end
   end
 
   def preview; end

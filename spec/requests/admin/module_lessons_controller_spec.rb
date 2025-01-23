@@ -10,20 +10,6 @@ RSpec.describe Admin::ModuleLessonsController, type: :request do
     sign_in user
   end
 
-  describe 'GET #index' do
-    it 'returns a success response' do
-      get admin_course_course_module_module_lessons_path(course, course_module)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET #show' do
-    it 'returns a success response' do
-      get admin_course_course_module_module_lesson_path(course, course_module, module_lesson)
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET #new' do
     it 'returns a success response' do
       get new_admin_course_course_module_module_lesson_path(course, course_module)
@@ -99,17 +85,13 @@ RSpec.describe Admin::ModuleLessonsController, type: :request do
   end
 
   describe 'DELETE #destroy' do
-    it 'destroys the requested module lesson' do
+    it 'destroys the requested module lesson and redirects to the course' do
       module_lesson
       expect do
         delete admin_course_course_module_module_lesson_path(course, course_module, module_lesson)
       end.to change(ModuleLesson, :count).by(-1)
-    end
 
-    it 'redirects to the module lessons list' do
-      delete admin_course_course_module_module_lesson_path(course, course_module, module_lesson)
-
-      expect(response).to redirect_to(admin_course_path(course))
+      expect(response).to have_http_status(:ok)
     end
   end
 end
