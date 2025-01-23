@@ -42,10 +42,7 @@
                 <%= modal_button_component(label: 'Preview', path: preview_admin_course_course_module_module_lesson_path(@course, course_module, lesson), size: 's-small') %>
               <% end %>
               <%= modal_button_component(path: edit_admin_course_course_module_module_lesson_path(@course, course_module, lesson), icon_name: 'edit', size: 'xs-small') %>
-              <%= modal_button_component(path: edit_admin_course_course_module_module_lesson_path(@course, course_module, lesson), icon_name: 'delete', size: 'xs-small') %>
-              <%= form_with model: [:admin, @course, course_module, lesson], method: :delete, data: { turbo_confirm: 'Are you sure?' } do |form| %>
-                <%= form.submit 'Delete' %>
-              <% end %>
+              <%= modal_delete_button_component(path: admin_course_course_module_module_lesson_path(@course, course_module, lesson), size: 'xs-small') %>
             </div>
           </li>
         <% end %>
