@@ -8,6 +8,15 @@
   <img src="app/assets/images/project_img_3.png" alt="ProjectImage3" width="200">
 </div>
 
+**Student Panel**
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="app/assets/images/project_img_4.png" alt="ProjectImage4" width="200">
+  <img src="app/assets/images/project_img_5.png" alt="ProjectImage5" width="200">
+  <img src="app/assets/images/project_img_6.png" alt="ProjectImage6" width="200">
+  <img src="app/assets/images/project_img_7.png" alt="ProjectImage6" width="200">
+</div>
+
 ## Description
 PS Code Academy is a web-based platform designed to help students and professionals learn web development fundamentals. The platform allows administrators to create and manage interactive courses, assignments, and rich content, while students can enroll, track progress, and submit assignments for review.
 
