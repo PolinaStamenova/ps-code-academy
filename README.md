@@ -1,5 +1,13 @@
 # PS Code Academy
 
+**Admin Panel**
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="app/assets/images/project_img_1.png" alt="ProjectImage1" width="200">
+  <img src="app/assets/images/project_img_2.png" alt="ProjectImage2" width="200">
+  <img src="app/assets/images/project_img_3.png" alt="ProjectImage3" width="200">
+</div>
+
 ## Description
 PS Code Academy is a web-based platform designed to help students and professionals learn web development fundamentals. The platform allows administrators to create and manage interactive courses, assignments, and rich content, while students can enroll, track progress, and submit assignments for review.
 
@@ -78,3 +86,5 @@ bin/dev
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+
