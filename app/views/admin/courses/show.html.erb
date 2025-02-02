@@ -15,9 +15,9 @@
           <%= modal_delete_button_component(path: admin_course_path(@course), size: 'x-small') %>
           
           <% if @course.active? %>
-            <%= button_component(label: 'Unpublish', method: :post, path: unpublish_admin_course_path(@course), icon_name: 'publish', size: 'small') %>
+            <%= button_component(label: 'Unpublish', method: :post, path: unpublish_admin_course_path(@course), icon_name: 'unpublish', size: 'small') %>
           <% else %>
-            <%= button_component(label: 'Publish', method: :post, path: publish_admin_course_path(@course), icon_name: 'publish', size: 's-small') %>
+            <%= button_component(label: 'Publish', method: :post, path: publish_admin_course_path(@course), icon_name: 'publish', size: 'small') %>
           <% end %>
         </div>
       </div>

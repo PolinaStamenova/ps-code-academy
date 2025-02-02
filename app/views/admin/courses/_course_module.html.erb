@@ -1,7 +1,7 @@
 <%# --- Course Modules --- %>
 
 <h2 class='text-xl font-medium text-black'><%= @course.course_modules.any? ? 'Course content' : 'No course content yet' %></h2>
-<%= modal_button_component(label: 'Add Module', path: new_admin_course_course_module_path(@course), icon_name: 'add', size: 'small') %>
+<%= modal_button_component(label: 'Module', path: new_admin_course_course_module_path(@course), icon_name: 'add', size: 's-small') %>
 
 <ul class='rounded-lg flex flex-col gap-2'>
   <% @course.course_modules.each do |course_module| %>
@@ -21,7 +21,7 @@
       </div>
 
       <%# --- List of Module Lessons --- %>
-      <ul class='hidden bg-gray-100 p-4 rounded-b-lg' data-chevron-down-target="list">
+      <ul class='hidden bg-gray-100 p-4 rounded-b-lg flex flex-col gap-3' data-chevron-down-target="list">
         <% course_module.module_lessons.each do |lesson| %>
           <li class='flex justify-between items-center'>
             <div class="flex gap-2 flex items-center">

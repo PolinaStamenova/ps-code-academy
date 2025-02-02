@@ -46,7 +46,8 @@ class ButtonComponent < ApplicationComponent
     size_classes = {
       'xs-small' => 'w-9 text-xs',
       'x-small' => 'w-20 text-xs',
-      'small' => 'w-40 text-sm',
+      's-small' => 'text-xs px-3',
+      'small' => 'text-sm px-3',
       'medium' => 'w-60',
       'large' => 'w-80 text-lg',
       'large-xl' => 'w-100 text-xl'
@@ -62,7 +63,8 @@ class ButtonComponent < ApplicationComponent
       'delete' => 'fas fa-trash',
       'back' => 'fas fa-arrow-left',
       'dollar' => 'fas fa-dollar-sign',
-      'publish' => 'fas fa-upload'
+      'publish' => 'fas fa-upload',
+      'unpublish' => 'fas fa-download'
     }
 
     icon_classes[@icon_name]
