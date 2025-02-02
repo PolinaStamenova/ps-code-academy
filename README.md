@@ -65,8 +65,14 @@ yarn install
 ```
 rails db:create
 rails db:migrate
+```
+
+To create an admin user account with email: `johnny.depp@test.com` and password: `password123` run:
+
+```
 rails db:seed
 ```
+or do this manually from the console.
 
 4. Run the development server:
 ```
